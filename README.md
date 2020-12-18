@@ -28,4 +28,4 @@ rails g devise User
 
 # vitrineverte
 
-test push
+test
