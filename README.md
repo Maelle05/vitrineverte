@@ -38,4 +38,4 @@ rails g devise User
 
 # vitrineverte
 
-SALUT GIT HEROKU
+HAHA GIT HEROKU
