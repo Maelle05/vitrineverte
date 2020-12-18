@@ -27,5 +27,3 @@ quantity:integer
 rails g devise User
 
 # vitrineverte
-
-HAHA GIT HEROKU
