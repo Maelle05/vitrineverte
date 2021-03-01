@@ -5,11 +5,6 @@ class PagesController < ApplicationController
   def homeConsumer
   end
 
-  def myCommand
-    @product_in_orders = ProductInOrder.all
-    @orders = Order.all
-  end
-
   def contact
   end
 

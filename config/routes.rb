@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'pages/contact'
   get 'pages/legalnotice'
   get 'pages/homeConsumer'
-  get 'pages/myCommand'
   get 'pages/homeProductor'
   get 'pages/dashboardProductor'
   resources :product_in_orders
