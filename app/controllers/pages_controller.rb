@@ -15,4 +15,7 @@ class PagesController < ApplicationController
 
   def legalnotice
   end
+
+  def homeProductor
+  end
 end
