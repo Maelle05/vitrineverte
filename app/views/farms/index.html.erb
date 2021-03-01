@@ -1,44 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Farms</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Zipcode</th>
-      <th>City</th>
-      <th>Hours</th>
-      <th>Payment</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @farms.each do |farm| %>
+<section class="container">
+  <h1>Mes fermes</h1>
+  
+  <table class="table container">
+    <thead>
       <tr>
-        <td><%= farm.user_id %></td>
-        <td><%= farm.name %></td>
-        <td><%= farm.address %></td>
-        <td><%= farm.zipcode %></td>
-        <td><%= farm.city %></td>
-        <td><%= farm.hours %></td>
-        <td><%= farm.payment %></td>
-        <td><%= farm.phone %></td>
-        <td><%= farm.email %></td>
-        <td><%= farm.description %></td>
-        <td><%= link_to 'Show', farm %></td>
-        <td><%= link_to 'Edit', edit_farm_path(farm) %></td>
-        <td><%= link_to 'Destroy', farm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="col">User</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Zipcode</th>
+        <th scope="col">City</th>
+        <th scope="col">Hours</th>
+        <th scope="col">Payment</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Description</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+  
+    <tbody>
+      <% @farms.each do |farm| %>
+        <tr>
+          <td><%= farm.user_id %></td>
+          <td><%= farm.name %></td>
+          <td><%= farm.address %></td>
+          <td><%= farm.zipcode %></td>
+          <td><%= farm.city %></td>
+          <td><%= farm.hours %></td>
+          <td><%= farm.payment %></td>
+          <td><%= farm.phone %></td>
+          <td><%= farm.email %></td>
+          <td><%= farm.description %></td>
+          <td><%= link_to 'Show', farm %></td>
+          <td><%= link_to 'Edit', edit_farm_path(farm) %></td>
+          <td><%= link_to 'Destroy', farm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
 
 <br>
 
