@@ -1,3 +1,5 @@
+
+
 <p id="notice"><%= notice %></p>
   
   <p>
@@ -15,11 +17,11 @@
     <strong>Ready:</strong>
     <%= @order.ready %>
   </p>
-
-  <!-- <p>
-  <strong>Taken:</strong>
-  <%= @order.taken %>
-  </p> --!>
+  
+  <p>
+    <strong>Taken:</strong>
+    <%= @order.taken %>
+  </p> 
 
   <table class="table">
     <% @order.product_in_orders.each do |product_in_order| %>
