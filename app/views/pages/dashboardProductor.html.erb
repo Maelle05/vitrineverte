@@ -1,4 +1,4 @@
-<section>
+<section class="container">
     <div class="row">
         <div class="col"><%= image_tag "placeholder.png" %></div>
 
@@ -33,7 +33,7 @@
       <div class="card-body">
         <%= image_tag "placeholder.png" %>
         <h5 class="card-title">Mon catalogue</h5>
-        <%= link_to "Modifier et visualiser mon catalogue"%>
+        <%= link_to "Modifier et visualiser mon catalogue", products_path%>
       </div>
     </div>
   </div>
@@ -41,8 +41,8 @@
     <div class="card">
       <div class="card-body">
         <%= image_tag "placeholder.png" %>
-        <h5 class="card-title">Mon catalogue</h5>
-        <%= link_to "Informations sur ma ferme"%>
+        <h5 class="card-title">Informations sur ma ferme</h5>
+        <%= link_to "Modifier mes informations publiques", farms_path %>
       </div>
     </div>
   </div>
@@ -50,8 +50,8 @@
     <div class="card">
       <div class="card-body">
         <%= image_tag "placeholder.png" %>
-        <h5 class="card-title">Mon catalogue</h5>
-        <%= link_to "Mes commandes"%>
+        <h5 class="card-title">Mes commandes</h5>
+        <%= link_to "Visualiser et suivre les commandes", orders_path %>
       </div>
     </div>
   </div>
