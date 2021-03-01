@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def to_s
-    "#{first_name} #{last_name}"
+    first_name.blank? ? "#{email}"
+                      : "#{first_name} #{last_name}"
   end
 end

@@ -18,4 +18,7 @@ class PagesController < ApplicationController
 
   def homeProductor
   end
+
+  def dashboardProductor
+  end
 end
