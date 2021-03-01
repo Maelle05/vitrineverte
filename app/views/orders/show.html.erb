@@ -2,12 +2,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @order.user_id %>
+  <%= @order.user %>
 </p>
 
 <p>
   <strong>Farm:</strong>
-  <%= @order.farm_id %>
+  <%= @order.farm %>
 </p>
 
 <p>
@@ -19,6 +19,15 @@
   <strong>Taken:</strong>
   <%= @order.taken %>
 </p>
+
+<table class="table">
+  <% @order.product_in_orders.each do |product_in_order| %>
+    <tr>
+      <td><%= product_in_order.product %></td>
+      <td><%= product_in_order.quantity %></td>
+    </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
