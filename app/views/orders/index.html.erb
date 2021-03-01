@@ -1,33 +1,37 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Orders</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Farm</th>
-      <th>Ready</th>
-      <th>Taken</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
+<h1>Mes commandes </h1>
+<% if user_signed_in? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= order.user_id %></td>
-        <td><%= order.farm_id %></td>
-        <td><%= order.ready %></td>
-        <td><%= order.taken %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>User</th>
+        <th>Farm</th>
+        <th>Ready</th>
+        <th>Taken</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @orders.each do |order| %>
+        <% if (order.user_id == current_user.id) %>
+          <tr>
+            <td><%= order.user_id %></td>
+            <td><%= order.farm_id %></td>
+            <td><%= order.ready %></td>
+            <td><%= order.taken %></td>
+            <td><%= link_to 'Show', order %></td>
+            <td><%= link_to 'Edit', edit_product_in_order_path(order) %></td>
+            <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
 
+  <br>
 <%= link_to 'New Order', new_order_path %>
+<% else %>
+    <h6>Pour voir vos commandes connecté vous </h6>
+    <%= link_to 'Connexion', new_user_session_url %>
+<% end %>
