@@ -5,7 +5,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @farm = Farm.find params[:farm_id]
+    @products = @farm.products
   end
 
   # GET /products/1

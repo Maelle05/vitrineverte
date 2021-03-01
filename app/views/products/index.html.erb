@@ -2,7 +2,7 @@
 
 <section class="container">
   <h1>Products</h1>
-  
+
   <table class="table container">
     <thead>
       <tr>
@@ -15,7 +15,7 @@
         <th scope="col">Active</th>
       </tr>
     </thead>
-  
+
     <tbody>
       <% @products.each do |product| %>
         <tr>
@@ -26,9 +26,9 @@
           <td><%= product.product_unit %></td>
           <td><%= product.quantity %></td>
           <td><%= product.active %></td>
-          <td><%= link_to 'Show', product %></td>
-          <td><%= link_to 'Edit', edit_product_path(product) %></td>
-          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', [@farm, product] %></td>
+          <td><%#= link_to 'Edit', edit_product_path(product) %></td>
+          <td><%#= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -37,4 +37,4 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<%#= link_to 'New Product', new_product_path %>
