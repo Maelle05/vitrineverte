@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/contact'
   get 'pages/legalnotice'
+  get 'pages/homeConsumer'
+  get 'pages/myCommand'
   resources :product_in_orders
   resources :orders
   resources :products
