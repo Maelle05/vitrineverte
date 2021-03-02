@@ -28,4 +28,7 @@
     </tr>
   <% end %>
 </table>
-<%= link_to 'Edit', edit_farm_order_path(@farm, @order) %>
+<%= link_to 'Changer le statut de la commande', edit_farm_order_path(@farm, @order) %>
+<br>
+<%= link_to 'Modifier la commannde', farm_products_path(@farm) %>
+
