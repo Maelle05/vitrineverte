@@ -3,7 +3,11 @@ class Order < ApplicationRecord
   belongs_to :farm
   has_many :product_in_orders
 
+  def item_for(product)
+    product_in_orders.where(product: product).first_or_initialize
+  end
+
   def to_s
-    "#{id}"
+    "Commande n°#{id}"
   end
 end

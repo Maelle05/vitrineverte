@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = @farm.products
+    @order = Order.where(user: current_user, farm: @farm).first_or_initialize
   end
 
   # GET /products/1
@@ -30,7 +31,7 @@ class ProductsController < ApplicationController
     @product.farm = @farm
     respond_to do |format|
       if @product.save
-        format.html { redirect_to [@farm, @product], notice: 'Product was successfully created.' }
+        format.html { redirect_to farm_products_path(@farm), notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -44,7 +45,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to [@farm, @product], notice: 'Product was successfully updated.' }
+        format.html { redirect_to farm_products_path(@farm), notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }

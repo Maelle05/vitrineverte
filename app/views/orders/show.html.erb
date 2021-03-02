@@ -1,35 +1,31 @@
+<h1><%= @order %></h1>
+<p>
+  <strong>User:</strong>
+  <%= @order.user %>
 
+</p>
 
-<p id="notice"><%= notice %></p>
-  
-  <p>
-    <strong>User:</strong> 
-    <%= @order.user %>
+<p>
+  <strong>Farm:</strong>
+  <%= @order.farm %>
+</p>
 
-  </p>
+<p>
+  <strong>Ready:</strong>
+  <%= @order.ready %>
+</p>
 
-  <p>
-    <strong>Farm:</strong>
-    <%= @order.farm %>
-  </p>
+<p>
+  <strong>Taken:</strong>
+  <%= @order.taken %>
+</p>
 
-  <p>
-    <strong>Ready:</strong>
-    <%= @order.ready %>
-  </p>
-
-  <p>
-    <strong>Taken:</strong>
-    <%= @order.taken %>
-  </p> 
-
-  <table class="table">
-    <% @order.product_in_orders.each do |product_in_order| %>
-      <tr>
-        <td><%= product_in_order.product %></td>
-        <td><%= product_in_order.quantity %></td>
-      </tr>
-    <% end %>
-  </table>
-  <%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<table class="table">
+  <% @order.product_in_orders.each do |product_in_order| %>
+    <tr>
+      <td><%= product_in_order.product %></td>
+      <td><%= product_in_order.quantity %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Edit', edit_farm_order_path(@farm, @order) %>

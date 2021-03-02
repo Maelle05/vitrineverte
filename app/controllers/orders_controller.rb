@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :load_farm
 
   # GET /orders
   # GET /orders.json
@@ -26,10 +27,10 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    add_products
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to [@farm, @order], notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -43,7 +44,8 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        add_products
+        format.html { redirect_to [@farm, @order], notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -63,13 +65,31 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def order_params
-      params.require(:order).permit(:user_id, :farm_id, :ready, :taken)
+  def add_products
+    quantities = params[:order][:product_in_orders]
+    return if quantities.nil?
+    @farm.products.each_with_index do |product, index|
+      quantity = quantities[index].to_f
+      item = @order.item_for product
+      if quantity.zero?
+        item.destroy
+      else
+        item.quantity = quantity
+        item.save
+      end
     end
+  end
+
+  def load_farm
+    @farm = Farm.find params[:farm_id]
+  end
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  def order_params
+    params.require(:order).permit(:user_id, :farm_id, :ready, :taken)
+  end
 end

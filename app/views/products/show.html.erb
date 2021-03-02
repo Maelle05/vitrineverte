@@ -35,4 +35,7 @@
   <%= @product.active %>
 </p>
 
-<%= link_to 'Edit', edit_farm_product_path(@farm, @product) %> 
+<% if current_user == @farm.user %>
+  <%= link_to 'Edit', edit_farm_product_path(@farm, @product) %>
+  <%= link_to 'Destroy', [@farm, @product], method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

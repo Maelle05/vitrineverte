@@ -12,5 +12,5 @@ Rails.application.routes.draw do
       resources :product_in_orders
     end
   end
-  root to: 'pages#home#index'
+  root to: 'farms#index'
 end
