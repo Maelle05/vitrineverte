@@ -12,30 +12,40 @@
         <th>Description</th>
         <th>Prix</th>
         <th>Quantité disponible</th>
-        <th>Quantité commandée</th>
+        <% if current_user != @farm.user %>
+          <th>Quantité commandée</th>
+        <% end %>
       </tr>
     </thead>
 
     <tbody>
       <% @products.each do |product| %>
         <tr>
-          <td><%= link_to product, [@farm, product] %></td>
+          <% if current_user == @farm.user %>
+            <td>Modifier le produit <%= link_to product, [@farm, product] %></td>
+          <% else %>
+            <td><%= link_to product, [@farm, product] %></td>
+          <% end %>
           <td><%= product.description %></td>
           <td>
             <%= product.price %>
             <%= product.product_unit %>
           </td>
           <td><%= product.quantity %></td>
-          <td>
-            <input type="number" name="order[product_in_orders][]" class="form-control" min="0" value="<%= @order.item_for(product).quantity %>">
-          </td>
+          <% if current_user != @farm.user %>
+            <td>
+              <input type="number" name="order[product_in_orders][]" class="form-control" min="0" value="<%= @order.item_for(product).quantity %>">
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= f.button :submit, 'Enregistrer' %>
+  <% if current_user != @farm.user %>
+    <%= f.button :submit, 'Enregistrer' %>
+  <% end %>
 <% end %>
 
 <% if current_user == @farm.user %>
-  <%= link_to 'Nouveau produit', new_farm_product_path(@farm) %>
+  <%= link_to 'Nouveau produit', new_farm_product_path(@farm), class: 'btn btn-primary' %>
 <% end %>

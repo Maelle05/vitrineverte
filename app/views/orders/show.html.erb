@@ -28,7 +28,17 @@
     </tr>
   <% end %>
 </table>
-<%= link_to 'Changer le statut de la commande', edit_farm_order_path(@farm, @order) %>
-<br>
-<%= link_to 'Modifier la commannde', farm_products_path(@farm) %>
+<% if current_user == @farm.user %>
+  <%= link_to 'Changer le statut de la commande', edit_farm_order_path(@farm, @order) %>
+<% else %>
+  <% if (@order.ready != true) %>
+    <%= link_to 'Modifier la commannde', farm_products_path(@farm) %>
+  <% else %>
+    <% if @order.taken != true %>
+      <p>La commande a déja été prepaté par le producteur, vous ne pouvez plus la modifier</p>
+    <% else %>
+      <p>Vous avez déja retiré votre commande </p>
+    <% end %>
+  <% end %>
+<% end %>
 

@@ -1,37 +1,134 @@
 <section class='container'>
   <p id="notice"><%= notice %></p>
-  <h1>Mes commandes </h1>
+  <h1>Mes commandes : </h1>
   <% if user_signed_in? %>
-    <table>
+    <br>
+    <h4>Mes commendes en cours </h4>
+    <table class="table" >
       <thead>
-        <tr>
-          <th>User</th>
-          <th>Farm</th>
-          <th>Ready</th>
-          <th>Taken</th>
+        <tr >
+          <th scope="col" >User</th>
+          <th scope="col" >Farm</th>
+          <th scope="col">Ma commande est t'elle prête</th>
+          <th scope="col">Ma commende a t'elle été retirée</th>
           <th colspan="3"></th>
         </tr>
       </thead>
-
       <tbody>
         <% @orders.each do |order| %>
-          <% if (order.user_id == current_user.id) %>
-            <tr>
+          <% if (order.user_id == current_user.id && @farm.id == order.farm_id  && current_user != @farm.user && !order.taken && !order.ready ) %>
+            <tr scope="row">
               <td><%= order.user_id %></td>
               <td><%= order.farm_id %></td>
-              <td><%= order.ready %></td>
-              <td><%= order.taken %></td>
-              <td><%= link_to 'Show', farm_order_path(@farm, order) %></td>
-              <td><%= link_to 'Edit', edit_farm_order_path(@farm, order) %></td>
-              <td><%= link_to 'Destroy', farm_order_path(@farm, order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><% if order.ready %> Oui <% else %> Non <% end %></td>
+              <td><% if order.taken %> Oui <% else %> Non <% end %></td>
+              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order) %></td>
+              <!-- <td><%#= link_to 'Destroy', farm_order_path(@farm, order), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+            </tr>
+          <% end %>
+        <% end %>
+        <% @orders.each do |order| %>
+          <% if (current_user == @farm.user && @farm.id == order.farm_id  && !order.taken && !order.ready) %>
+            <tr scope="row" >
+              <td><%= order.user_id %></td>
+              <td><%= order.farm_id %></td>
+              <td><% if order.ready %> Oui <% else %> Non <% end %></td>
+              <td><% if order.taken %> Oui <% else %> Non <% end %></td>
+              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order) %></td>
+              <% if current_user == @farm.user %>
+                <td><%= link_to 'Modifier le status', edit_farm_order_path(@farm, order) %></td>
+              <% end %>
+              <!-- <td><%#= link_to 'Destroy', farm_order_path(@farm, order), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <h4>Mes commendes a prendre </h4>
+    <table class="table" >
+      <thead>
+        <tr >
+          <th scope="col" >User</th>
+          <th scope="col" >Farm</th>
+          <th scope="col">Ma commande est t'elle prête</th>
+          <th scope="col">Ma commende a t'elle été retirée</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <% if (order.user_id == current_user.id && @farm.id == order.farm_id  && current_user != @farm.user && order.ready && !order.taken ) %>
+            <tr scope="row">
+              <td><%= order.user_id %></td>
+              <td><%= order.farm_id %></td>
+              <td><% if order.ready %> Oui <% else %> Non <% end %></td>
+              <td><% if order.taken %> Oui <% else %> Non <% end %></td>
+              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order) %></td>
+              <!-- <td><%#= link_to 'Destroy', farm_order_path(@farm, order), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+            </tr>
+          <% end %>
+        <% end %>
+        <% @orders.each do |order| %>
+          <% if (current_user == @farm.user && @farm.id == order.farm_id && !order.taken && order.ready) %>
+            <tr scope="row" >
+              <td><%= order.user_id %></td>
+              <td><%= order.farm_id %></td>
+              <td><% if order.ready %> Oui <% else %> Non <% end %></td>
+              <td><% if order.taken %> Oui <% else %> Non <% end %></td>
+              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order) %></td>
+              <% if current_user == @farm.user %>
+                <td><%= link_to 'Modifier le status', edit_farm_order_path(@farm, order) %></td>
+              <% end %>
+              <!-- <td><%#= link_to 'Destroy', farm_order_path(@farm, order), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <h4>Mes commendes terminée </h4>
+    <table class="table" >
+      <thead>
+        <tr >
+          <th scope="col" >User</th>
+          <th scope="col" >Farm</th>
+          <th scope="col">Ma commande est t'elle prête</th>
+          <th scope="col">Ma commende a t'elle été retirée</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <% if (order.user_id == current_user.id && @farm.id == order.farm_id  && current_user != @farm.user && order.taken && order.ready) %>
+            <tr scope="row">
+              <td><%= order.user_id %></td>
+              <td><%= order.farm_id %></td>
+              <td><% if order.ready %> Oui <% else %> Non <% end %></td>
+              <td><% if order.taken %> Oui <% else %> Non <% end %></td>
+              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order) %></td>
+              <!-- <td><%#= link_to 'Destroy', farm_order_path(@farm, order), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+            </tr>
+          <% end %>
+        <% end %>
+        <% @orders.each do |order| %>
+          <% if (current_user == @farm.user && @farm.id == order.farm_id && order.taken && order.ready ) %>
+            <tr scope="row" >
+              <td><%= order.user_id %></td>
+              <td><%= order.farm_id %></td>
+              <td><% if order.ready %> Oui <% else %> Non <% end %></td>
+              <td><% if order.taken %> Oui <% else %> Non <% end %></td>
+              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order) %></td>
+              <% if current_user == @farm.user %>
+                <td><%= link_to 'Modifier le status', edit_farm_order_path(@farm, order) %></td>
+              <% end %>
+              <!-- <td><%#= link_to 'Destroy', farm_order_path(@farm, order), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
             </tr>
           <% end %>
         <% end %>
       </tbody>
     </table>
 
-    <br>
-  <%= link_to 'New Order', new_farm_order_path(@farm, @order) %>
   <% else %>
       <h6>Pour voir vos commandes connecté vous </h6>
       <%= link_to 'Connexion', new_user_session_url %>

@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = @farm.products
-    @order = Order.where(user: current_user, farm: @farm).first_or_initialize
+    @order = Order.where(user: current_user, farm: @farm, ready: [nil, false]).first_or_initialize
   end
 
   # GET /products/1
