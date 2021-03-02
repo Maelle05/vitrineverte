@@ -21,9 +21,9 @@
               <td><%= order.farm_id %></td>
               <td><%= order.ready %></td>
               <td><%= order.taken %></td>
-              <td><%= link_to 'Show', order %></td>
-              <td><%= link_to 'Edit', edit_order_path(order) %></td>
-              <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Show', farm_order_path(@farm, order) %></td>
+              <td><%= link_to 'Edit', farm_products_path(@farm, order) %></td>
+              <td><%= link_to 'Destroy', farm_order_path(@farm, order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         <% end %>
@@ -31,7 +31,7 @@
     </table>
 
     <br>
-  <%= link_to 'New Order', new_order_path %>
+  <%= link_to 'New Order', new_farm_order_path(@farm, @order) %>
   <% else %>
       <h6>Pour voir vos commandes connecté vous </h6>
       <%= link_to 'Connexion', new_user_session_url %>

@@ -27,9 +27,11 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    add_products
+    @order.user = current_user
+    @order.farm = @farm
     respond_to do |format|
       if @order.save
+        add_products
         format.html { redirect_to [@farm, @order], notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
