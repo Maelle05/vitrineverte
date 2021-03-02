@@ -41,6 +41,7 @@
 </p>
 
 <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
-
-<%= link_to 'Edit', edit_farm_path(@farm) %> |
+<% if current_user == @farm.user %>
+  <%= link_to 'Edit', edit_farm_path(@farm) %> |
+<% end %>
 <%= link_to 'Back', farms_path %>
