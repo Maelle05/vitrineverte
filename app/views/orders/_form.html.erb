@@ -1,10 +1,8 @@
 <%= simple_form_for [@farm, @order] do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  
   <div class="form-inputs">
-    <%= f.association :user, :as => :hidden, :input_html => { :value => current_user.id }  %>
-  <%= f.association :farm, :label => 'Choisissez votre producteur' %>
-
     <%= f.input :ready %>
     <%= f.input :taken %>
   </div>

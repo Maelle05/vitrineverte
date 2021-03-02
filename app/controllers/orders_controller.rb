@@ -21,6 +21,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @order.user = current_user
+    @order.farm = @farm
   end
 
   # POST /orders
