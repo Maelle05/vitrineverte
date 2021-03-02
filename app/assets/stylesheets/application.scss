@@ -14,6 +14,12 @@
  *= require_self
  */
 
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 footer {
   background-color: rgba(214, 214, 214, 0.667);
+  width: 100%;
 }

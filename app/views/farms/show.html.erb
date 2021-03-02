@@ -1,54 +1,57 @@
-<p id="notice"><%= notice %></p>
+<section>
+  <p id="notice"><%= notice %></p>
+  
+  <p>
+    <strong>User:</strong>
+    <%= @farm.user_id %>
+  </p>
+  
+  <p>
+    <strong>Name:</strong>
+    <%= @farm.name %>
+  </p>
+  
+  <p>
+    <strong>Address:</strong>
+    <%= @farm.address %>
+  </p>
+  
+  <p>
+    <strong>Zipcode:</strong>
+    <%= @farm.zipcode %>
+  </p>
+  
+  <p>
+    <strong>City:</strong>
+    <%= @farm.city %>
+  </p>
+  
+  <p>
+    <strong>Hours:</strong>
+    <%= @farm.hours %>
+  </p>
+  
+  <p>
+    <strong>Payment:</strong>
+    <%= @farm.payment %>
+  </p>
+  
+  <p>
+    <strong>Phone:</strong>
+    <%= @farm.phone %>
+  </p>
+  
+  <p>
+    <strong>Email:</strong>
+    <%= @farm.email %>
+  </p>
+  
+  <p>
+    <strong>Description:</strong>
+    <%= @farm.description %>
+  </p>
+  
+  <%= link_to 'Edit', edit_farm_path(@farm) %> |
+  <%= link_to 'Back', farms_path %>
 
-<p>
-  <strong>User:</strong>
-  <%= @farm.user_id %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @farm.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @farm.address %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @farm.zipcode %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @farm.city %>
-</p>
-
-<p>
-  <strong>Hours:</strong>
-  <%= @farm.hours %>
-</p>
-
-<p>
-  <strong>Payment:</strong>
-  <%= @farm.payment %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @farm.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @farm.email %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @farm.description %>
-</p>
-
-<%= link_to 'Edit', edit_farm_path(@farm) %> |
-<%= link_to 'Back', farms_path %>
+</section>section 
