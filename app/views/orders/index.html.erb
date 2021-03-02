@@ -22,7 +22,7 @@
               <td><%= order.ready %></td>
               <td><%= order.taken %></td>
               <td><%= link_to 'Show', farm_order_path(@farm, order) %></td>
-              <td><%= link_to 'Edit', farm_products_path(@farm, order) %></td>
+              <td><%= link_to 'Edit', edit_farm_order_path(@farm, order) %></td>
               <td><%= link_to 'Destroy', farm_order_path(@farm, order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
