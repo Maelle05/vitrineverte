@@ -1,16 +1,18 @@
   <%= @farm %>
 
-  <h1>Products</h1>
+<h1>Products</h1>
+
+
+<%= simple_form_for [@farm, @order] do |f| %>
 
   <table class="table">
     <thead>
       <tr>
         <th>Nom</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Product unit</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Active</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Quantité disponible</th>
+        <th>Quantité commandée</th>
       </tr>
     </thead>
 
@@ -19,15 +21,21 @@
         <tr>
           <td><%= link_to product, [@farm, product] %></td>
           <td><%= product.description %></td>
-          <td><%= product.price %></td>
-          <td><%= product.product_unit %></td>
+          <td>
+            <%= product.price %>
+            <%= product.product_unit %>
+          </td>
           <td><%= product.quantity %></td>
-          <td><%= product.active %></td>
-          <td><%#= link_to 'Edit', edit_product_path(product) %></td>
-          <td><%#= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <input type="number" name="order[product_in_orders][]" class="form-control" min="0" value="<%= @order.item_for(product).quantity %>">
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= f.button :submit, 'Enregistrer' %>
+<% end %>
 
-<%= link_to 'Nouveau produit', new_farm_product_path(@farm) %>
+<% if current_user == @farm.user %>
+  <%= link_to 'Nouveau produit', new_farm_product_path(@farm) %>
+<% end %>
