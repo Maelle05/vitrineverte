@@ -1,38 +1,42 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Farm:</strong>
+  <strong>Produit de la ferme :</strong>
   <%= @product.farm_id %>
 </p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nom du produit :</strong>
   <%= @product.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Description du produit :</strong>
   <%= @product.description %>
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Prix :</strong>
   <%= @product.price %>
 </p>
 
 <p>
-  <strong>Product unit:</strong>
+  <strong>Unité du produit :</strong>
   <%= @product.product_unit %>
 </p>
 
 <p>
-  <strong>Quantity:</strong>
+  <strong>Quantité disponible :</strong>
   <%= @product.quantity %>
 </p>
 
 <p>
-  <strong>Active:</strong>
-  <%= @product.active %>
+  <strong>Le produit est t'il disponible a la vente :</strong>
+  <% if @product.active %>
+    <p> Oui </p>
+  <% else %>
+    <p> Non </p>
+  <% end %>
 </p>
 
 <% if current_user == @farm.user %>
