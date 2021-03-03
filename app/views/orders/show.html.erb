@@ -1,23 +1,31 @@
 <h1><%= @order %></h1>
 <p>
-  <strong>User:</strong>
+  <strong>Commande pour le client:</strong>
   <%= @order.user %>
 
 </p>
 
 <p>
-  <strong>Farm:</strong>
+  <strong>A la ferme :</strong>
   <%= @order.farm %>
 </p>
 
 <p>
-  <strong>Ready:</strong>
-  <%= @order.ready %>
+  <strong> La commande a t'elle été prepaté :</strong>
+  <%if  @order.ready %>
+    <p> Oui </p>
+  <% else %>
+    <p> Non </p>
+  <% end %>
 </p>
 
 <p>
-  <strong>Taken:</strong>
-  <%= @order.taken %>
+  <strong> La commande a t'elle été retiré :</strong>
+  <%if  @order.taken %>
+    <p> Oui </p>
+  <% else %>
+    <p>Non </p>
+  <% end %>
 </p>
 
 <table class="table">

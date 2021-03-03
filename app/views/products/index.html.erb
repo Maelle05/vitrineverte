@@ -20,32 +20,48 @@
 
     <tbody>
       <% @products.each do |product| %>
-        <tr>
-          <% if current_user == @farm.user %>
-            <td>Modifier le produit <%= link_to product, [@farm, product] %></td>
-          <% else %>
-            <td><%= link_to product, [@farm, product] %></td>
-          <% end %>
-          <td><%= product.description %></td>
-          <td>
-            <%= product.price %>
-            <%= product.product_unit %>
-          </td>
-          <td><%= product.quantity %></td>
-          <% if current_user != @farm.user %>
+        <% if product.active || current_user == @farm.user  %>
+          <tr>
+            <% if current_user == @farm.user %>
+              <td class='products' >Modifier le produit <%= link_to product, [@farm, product] %></td>
+            <% else %>
+              <td class='products' ><%= link_to product, [@farm, product] %></td>
+            <% end %>
+            <td><%= product.description %></td>
             <td>
-              <input type="number" name="order[product_in_orders][]" class="form-control" min="0" value="<%= @order.item_for(product).quantity %>">
+              <strong class='price'> <%= product.price %> </strong>
+              <%= product.product_unit %>
             </td>
-          <% end %>
-        </tr>
+            <td><%= product.quantity %></td>
+            <% if current_user != @farm.user %>
+              <td>
+                <input type="number" name="order[product_in_orders][]" class="form-control" min="0" max="<%=product.quantity%>" value="<%= @order.item_for(product).quantity %>">
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
   <% if current_user != @farm.user %>
-    <%= f.button :submit, 'Enregistrer' %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Mon Panier
+      </div>
+      <ul class="list-group list-group-flush" id='renderOrderSummery'>
+        <!-- /!\ EVAN l'auto render est fait dans orderSummary.js si tu veux changer les class de la liste ;) -->
+      </ul>
+    </div>
+    <br>
+    <%= f.button :submit, 'Enregistrer et valider la commande' %>
   <% end %>
 <% end %>
+
+
 
 <% if current_user == @farm.user %>
   <%= link_to 'Nouveau produit', new_farm_product_path(@farm), class: 'btn btn-primary' %>
 <% end %>
+
+
+<%= javascript_pack_tag 'orderSummary', 'data-turbolinks-track': 'reload' %>
