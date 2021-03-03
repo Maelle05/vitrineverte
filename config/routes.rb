@@ -15,5 +15,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'farms#index'
+  root to: 'pages#home'
 end
