@@ -1,6 +1,7 @@
-var inputs = document.getElementsByName('order[product_in_orders][]')
+var inputs = document.getElementsByClassName('inputProduct')
 var productTable = document.getElementsByClassName('products')
 var priceTable = document.getElementsByClassName('price')
+var quantityTable = document.getElementsByClassName('quantity')
 var listContainerSummary = document.getElementById('renderOrderSummery')
 var summaryTable = []
 
@@ -10,10 +11,10 @@ for (let i = 0; i < inputs.length; i++) {
 }
 
 for (let y = 0; y < productTable.length; y++) {
-    summaryTable.push([productTable[y].innerText, parseFloat(inputs[y].value), parseFloat(priceTable[y].innerText)])
+    summaryTable.push([productTable[y].innerText, parseFloat(inputs[y].value), parseFloat(priceTable[y].innerText), parseFloat(quantityTable[y].innerText)])
 }
 
-// console.log(summaryTable)
+console.log(summaryTable)
 
 renderList()
 
@@ -31,7 +32,13 @@ function renderList(){
 
 function updateOrder(numberInput) {
     let value = inputs[numberInput].value
-    summaryTable[numberInput][1] = parseFloat(value)
+    if (value > parseFloat(quantityTable[numberInput].innerText)){
+        summaryTable[numberInput][1] = parseFloat(quantityTable[numberInput].innerText)
+        inputs[numberInput].value = parseFloat(quantityTable[numberInput].innerText)
+    }else{
+        summaryTable[numberInput][1] = parseFloat(value)
+    }
+
     renderList()
 }
 

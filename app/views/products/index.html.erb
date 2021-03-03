@@ -24,25 +24,24 @@
             <% if current_user == @farm.user %>
               <td class='products' >Modifier le produit <%= link_to product, edit_farm_product_path(@farm, product) %></td>
             <% else %>
-              <td class='products' ><%= link_to product, [@farm, product] %></td>
+              <td <% if product.active %> class='products' <% end %> ><%= link_to product, [@farm, product] %></td>
             <% end %>
             <td><%= product.description %></td>
             <td>
-              <strong class='price'> <%= product.price %> </strong>
+              <strong <% if product.active %> class='price' <% end %>> <%= product.price %> </strong>
               <%= product.product_unit %>
             </td>
             <td>
-              <% if product.active %> <%= product.quantity %> <% else %> Ce produit n'est pas disponibe actuellement <% end %>
+              <% if product.active %> <p class='quantity'> <%= product.quantity %> </p> <% else %> Ce produit n'est pas disponibe actuellement <% end %>
             </td>
             <% if current_user != @farm.user  %>
               <td>
-                <input type="number" name="order[product_in_orders][]" class="form-control" min="0" 
+                
                 <% if !product.active %>
-                  max="0" placeholder="Ce produit n'est pas disponibe actuellement" disabled="disabled"
+                  <input type="number" readonly="readonly" name="order[product_in_orders][]" class="form-control" min="0" max="0" value="0">
                 <%else %>
-                  max="<%=product.quantity%>" value="<%= @order.item_for(product).quantity %>"
+                 <input type="number" name="order[product_in_orders][]" class="form-control inputProduct" min="0"  max="<%=product.quantity%>" value="<%= @order.item_for(product).quantity %>" >
                 <% end %>
-                >
               </td>
             <% end %>
           </tr>
