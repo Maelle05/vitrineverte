@@ -9,7 +9,19 @@ footer {
   width: 100%;
 }
 
+.logo-nav{
+  width: 50px;
+}
 
+.navbar-brand{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  background-color: #0E1F10;
+}
 
 .homegrid {
   display: grid;
@@ -39,42 +51,3 @@ footer {
   color: white;
   margin-top: 50px;
 }
-//
-// .productor {
-//   background-color: rgb(218, 218, 218);
-//   align-items: center;
-//   height: 50vh;
-//   display: flex;
-//   justify-content: center;
-//   grid-column: 1;
-//   grid-row: 1;
-// }
-//
-// .consumer {
-//   background-color: rgb(218, 218, 218);
-//   align-items: center;
-//   height: 50vh;
-//   display: flex;
-//   justify-content: center;
-//   grid-column: 2;
-//   grid-row: 1;
-// }
-//
-// .s1 {
-//   text-align: center;
-// }
-//
-// .createSpaceButton {
-//   display: flex;
-//   justify-content: center;
-//   max-width: 600px;
-// }
-//
-// .section-title {
-//   margin-bottom: 30px;
-// }
-//
-// section {
-//   margin-top: 100px;
-//   margin-bottom: 100px;
-// }

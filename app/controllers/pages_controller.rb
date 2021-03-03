@@ -3,21 +3,9 @@ class PagesController < ApplicationController
 
   def home
     @farms = Farm.all
-    @farm = Farm
-  end
-
-  def homeConsumer
-  end
-
-  def contact
   end
 
   def legalnotice
   end
-
-  def homeProductor
-  end
-
-  def dashboardProductor
-  end
+  
 end
