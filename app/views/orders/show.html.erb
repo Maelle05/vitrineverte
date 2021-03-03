@@ -1,3 +1,5 @@
+<section class='container'>
+
 <h1><%= @order %></h1>
 <p>
   <strong>Commande pour le client:</strong>
@@ -29,13 +31,26 @@
 </p>
 
 <table class="table">
-  <% @order.product_in_orders.each do |product_in_order| %>
+  <thead>
     <tr>
-      <td><%= product_in_order.product %></td>
-      <td><%= product_in_order.quantity %></td>
+      <th scope="col">Produits</th>
+      <th scope="col">Quantité</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Total du produit</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @order.product_in_orders.each do |product_in_order| %>
+      <tr>
+        <td><%= product_in_order.product %></td>
+        <td><%= product_in_order.quantity %></td>
+        <td><%= product_in_order.product.price %></td>
+        <td class='Tproduct'><%= product_in_order.product.price*product_in_order.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+<p>TOTAL : <strong id='total'></strong> € </p>
 <% if current_user == @farm.user %>
   <%= link_to 'Changer le statut de la commande', edit_farm_order_path(@farm, @order) %>
 <% else %>
@@ -50,3 +65,6 @@
   <% end %>
 <% end %>
 
+</section>
+
+<%= javascript_pack_tag 'orderTotals', 'data-turbolinks-track': 'reload' %>
