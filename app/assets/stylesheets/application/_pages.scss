@@ -61,3 +61,20 @@ nav {
 .header-circle{
   background-color: #D3A500;
 }
+
+.farm-card{
+  background-color: #F3EDDE !important;
+}
+
+.button-farm-card{
+  background-color: #D3A500 !important;
+}
+
+.button-farm-card:focus{
+  box-shadow: none !important;
+}
+
+.container-loc-farm-card{
+  display: flex;
+  flex-direction: row;
+}
