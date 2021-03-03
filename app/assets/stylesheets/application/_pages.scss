@@ -78,3 +78,36 @@ nav {
   display: flex;
   flex-direction: row;
 }
+
+.home-us-container{
+  background-color: #D3A500;
+}
+
+.home-us-p{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-us-p div{
+  width: 60% !important;
+}
+
+.home-prod-container{
+  background-color: #87A80D;
+}
+
+.button-home-prod{
+  background-color: #F1E7D6 !important;
+  color: #0E1F10 !important;
+}
+
+.button-home-prod:focus{
+  box-shadow: none !important;
+}
+
+@media all and (max-width: 1024px)
+{
+
+}
