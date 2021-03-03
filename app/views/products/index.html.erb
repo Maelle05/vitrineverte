@@ -38,7 +38,7 @@
               <td>
                 <input type="number" name="order[product_in_orders][]" class="form-control" min="0" 
                 <% if !product.active %>
-                  max="0" placeholder="Ce produit n'est pas disponibe actuellement"
+                  max="0" placeholder="Ce produit n'est pas disponibe actuellement" disabled="disabled"
                 <%else %>
                   max="<%=product.quantity%>" value="<%= @order.item_for(product).quantity %>"
                 <% end %>
