@@ -72,7 +72,7 @@ class ProductsController < ApplicationController
   def load_farm
     @farm = Farm.find params[:farm_id]
   end
-
+  
   def set_product
     @product = Product.find(params[:id])
   end
