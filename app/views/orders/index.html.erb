@@ -1,7 +1,9 @@
 <section class='container'>
   <p id="notice"><%= notice %></p>
   <h1>Mes commandes : </h1>
-    <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
+    <% if current_user != @farm.user %>
+      <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
+    <% end %>
     <br>
     <h4>Mes commandes en cours</h4>
     <table class="table" >

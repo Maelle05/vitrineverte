@@ -22,7 +22,7 @@
       <% @products.each do |product| %>
           <tr>
             <% if current_user == @farm.user %>
-              <td class='products' >Modifier le produit <%= link_to product, [@farm, product] %></td>
+              <td class='products' >Modifier le produit <%= link_to product, edit_farm_product_path(@farm, product) %></td>
             <% else %>
               <td class='products' ><%= link_to product, [@farm, product] %></td>
             <% end %>
