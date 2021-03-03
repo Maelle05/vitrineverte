@@ -1,7 +1,14 @@
 
 * {
-  margin: 0;
   box-sizing: border-box;
+}
+
+p{
+  font-size: 20px;
+}
+
+h2{
+  font-size: 30px;
 }
 
 footer {
@@ -21,6 +28,10 @@ footer {
 
 nav {
   background-color: #0E1F10;
+}
+
+.farm-title{
+  margin: 90px 0 90px 0;
 }
 
 .homegrid {
