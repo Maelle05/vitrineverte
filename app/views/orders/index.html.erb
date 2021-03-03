@@ -3,14 +3,14 @@
   <h1>Mes commandes : </h1>
     <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
     <br>
-    <h4>Mes commendes en cours </h4>
+    <h4>Mes commandes en cours</h4>
     <table class="table" >
       <thead>
         <tr >
           <th scope="col" >User</th>
           <th scope="col" >Farm</th>
-          <th scope="col">Ma commande est t'elle prête</th>
-          <th scope="col">Ma commende a t'elle été retirée</th>
+          <th scope="col">Ma commande est-elle prête ?</th>
+          <th scope="col">Ma commande a-t-elle été retirée ?</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -43,14 +43,14 @@
       </tbody>
     </table>
     <br>
-    <h4>Mes commendes a prendre </h4>
+    <h4>Mes commandes à récupérer</h4>
     <table class="table" >
       <thead>
         <tr >
           <th scope="col" >User</th>
           <th scope="col" >Farm</th>
-          <th scope="col">Ma commande est t'elle prête</th>
-          <th scope="col">Ma commende a t'elle été retirée</th>
+          <th scope="col">Ma commande est-elle prête ?</th>
+          <th scope="col">Ma commande a-t-elle été retirée ?</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -83,14 +83,14 @@
       </tbody>
     </table>
     <br>
-    <h4>Mes commendes terminée </h4>
+    <h4>Mes commandes terminées </h4>
     <table class="table" >
       <thead>
         <tr >
           <th scope="col" >User</th>
           <th scope="col" >Farm</th>
-          <th scope="col">Ma commande est t'elle prête</th>
-          <th scope="col">Ma commende a t'elle été retirée</th>
+          <th scope="col">Ma commande est-elle prête ?</th>
+          <th scope="col">Ma commande a-t-elle été retirée ?</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -122,4 +122,9 @@
         <% end %>
       </tbody>
     </table>
+
+  <% else %>
+      <h6>Connectez-vous pour voir vos commandes</h6>
+      <%= link_to 'Connexion', new_user_session_url %>
+  <% end %>
 </section>

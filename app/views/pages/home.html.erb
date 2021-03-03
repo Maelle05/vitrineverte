@@ -1,9 +1,34 @@
-
 <div class="homegrid">
-        <%= link_to pages_dashboardProductor_path do %>
-    <div class="productor">Je suis producteur</div>
+    <%#<%= link_to pages_dashboardProductor_path do %>
+        <%#<div class="productor">Je suis producteur</div>
     <% end %>
-        <%= link_to farms_path do %>
-    <div class="consumer">Je suis consommateur</div>
+    <%#<%= link_to farms_path do %>
+        <%#<div class="consumer">Je suis consommateur</div>
     <% end %>
+    <div class="homeheader">
+        <%= image_tag ("logo.png"), class: "logo"%>
+        <h1>VITRINE VERTE</h1>
+    </div>
+</div>
+
+<%= link_to "Liste des fermes", farms_path  %>
+
+<div class="row">
+<% @farms.each do |farm| %>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h2><%= farm.name %></h2>
+                <p><%= farm.user %></p>
+                <p>
+                    <%= farm.address %>
+                    <%= farm.zipcode %>
+                    <%= farm.city %>
+                </p>
+                <p><%= farm.description %></p>
+                <%= link_to 'En savoir plus', farm, class: 'btn btn-primary stretched-link'%>
+            </div>
+        </div>
+    </div>
+<% end %>
 </div>
