@@ -51,12 +51,11 @@
   <%= link_to 'Voir les commandes passés à ma ferme', farm_orders_path(@farm), class: 'btn btn-primary' %>
 
 <% elsif user_signed_in?  %>
+  <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
   <%= link_to 'Voir mes commandes ', farm_orders_path(@farm),class: 'btn btn-primary' %>
 
 <% else %>
-
   <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
-  <%= link_to 'Voir mes commendes pour cette ferme', farm_orders_path(@farm),class: 'btn btn-primary' %>
 <% end %>
 
 <%= link_to 'Back', farms_path %>

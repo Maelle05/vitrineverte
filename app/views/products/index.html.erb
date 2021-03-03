@@ -20,7 +20,6 @@
 
     <tbody>
       <% @products.each do |product| %>
-        <% if product.active || current_user == @farm.user  %>
           <tr>
             <% if current_user == @farm.user %>
               <td class='products' >Modifier le produit <%= link_to product, [@farm, product] %></td>
@@ -32,14 +31,21 @@
               <strong class='price'> <%= product.price %> </strong>
               <%= product.product_unit %>
             </td>
-            <td><%= product.quantity %></td>
-            <% if current_user != @farm.user %>
+            <td>
+              <% if product.active %> <%= product.quantity %> <% else %> Ce produit n'est pas disponibe actuellement <% end %>
+            </td>
+            <% if current_user != @farm.user  %>
               <td>
-                <input type="number" name="order[product_in_orders][]" class="form-control" min="0" max="<%=product.quantity%>" value="<%= @order.item_for(product).quantity %>">
+                <input type="number" name="order[product_in_orders][]" class="form-control" min="0" 
+                <% if !product.active %>
+                  max="0" placeholder="Ce produit n'est pas disponibe actuellement"
+                <%else %>
+                  max="<%=product.quantity%>" value="<%= @order.item_for(product).quantity %>"
+                <% end %>
+                >
               </td>
             <% end %>
           </tr>
-        <% end %>
       <% end %>
     </tbody>
   </table>
