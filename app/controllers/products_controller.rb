@@ -3,11 +3,15 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :load_farm
 
+  # add_breadcrumb "home", :root_path
+  # add_breadcrumb "ferme", :farm_path
+
   # GET /products
   # GET /products.json
   def index
     @products = @farm.products
     @order = Order.where(user: current_user, farm: @farm).first_or_initialize
+    # add_breadcrumb "Products", :farm_products_path
   end
 
   # GET /products/1

@@ -2,6 +2,9 @@ class FarmsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_farm, only: [:show, :edit, :update, :destroy]
 
+  # add_breadcrumb "home", :root_path
+
+
   # GET /farms
   # GET /farms.json
   def index
@@ -11,15 +14,18 @@ class FarmsController < ApplicationController
   # GET /farms/1
   # GET /farms/1.json
   def show
+    # add_breadcrumb "Show", :farm_path
   end
 
   # GET /farms/new
   def new
     @farm = Farm.new
+    # add_breadcrumb "New farm", :new_farm_path
   end
 
   # GET /farms/1/edit
   def edit
+    # add_breadcrumb "New farm", :edit_farm_path
   end
 
   # POST /farms

@@ -14,7 +14,12 @@
 
   <body>
     <%= render 'shared/navbar' %>
+
     <main class="container">
+        <ol class="breadcrumb">
+          <%= render_breadcrumbs :tag => :li, :separator => ">" %>
+        </ol>
+      </nav>
       <%= yield %>
     </main>
     <%# <%= render "shared/footer" %>
