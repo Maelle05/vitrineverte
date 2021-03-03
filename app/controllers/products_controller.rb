@@ -3,6 +3,9 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :load_farm
 
+  # add_breadcrumb "home", :root_path
+  # add_breadcrumb "ferme", :farm_path
+
   # GET /products
   # GET /products.json
   def index
@@ -69,7 +72,7 @@ class ProductsController < ApplicationController
   def load_farm
     @farm = Farm.find params[:farm_id]
   end
-
+  
   def set_product
     @product = Product.find(params[:id])
   end
