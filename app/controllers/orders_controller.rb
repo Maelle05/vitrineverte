@@ -4,17 +4,21 @@ class OrdersController < ApplicationController
   before_action :load_farm
 
   add_breadcrumb "Accueil", :root_path
-
-
+  add_breadcrumb "Fermes à proximité", :farms_path
+  
   # GET /orders
   # GET /orders.json
   def index
+    @farms = Farm.all
     @orders = Order.all
+    add_breadcrumb "#{@farm}", farm_path(@farm)
+    add_breadcrumb "Mes commandes", farm_orders_path
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    
   end
 
   # GET /orders/new
