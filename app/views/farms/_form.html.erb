@@ -4,18 +4,18 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :address %>
-    <%= f.input :zipcode %>
-    <%= f.input :city %>
-    <%= f.input :hours %>
-    <%= f.input :payment %>
-    <%= f.input :phone %>
-    <%= f.input :email %>
+    <%= f.input :name, label: 'Nom de la ferme' %>
+    <%= f.input :address, label: 'Adresse' %>
+    <%= f.input :zipcode, label: 'Code postal' %>
+    <%= f.input :city, label: 'Ville' %>
+    <%= f.input :hours, label: 'Horaires' %>
+    <%= f.input :payment, label: 'Paiements disponibles' %>
+    <%= f.input :phone, label: 'Téléphone' %>
+    <%= f.input :email, label: 'Adresse mail' %>
     <%= f.input :description %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, value: 'Envoyer' %>
   </div>
 <% end %>
