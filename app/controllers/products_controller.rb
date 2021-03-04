@@ -3,6 +3,9 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :load_farm
 
+  add_breadcrumb "Accueil", :root_path
+  add_breadcrumb "Fermes à proximité", :farms_path
+
   # add_breadcrumb "home", :root_path
   # add_breadcrumb "ferme", :farm_path
 
@@ -16,6 +19,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    add_breadcrumb @product, :product_path
   end
 
   # GET /products/new

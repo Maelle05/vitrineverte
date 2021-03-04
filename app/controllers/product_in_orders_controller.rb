@@ -2,6 +2,9 @@ class ProductInOrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product_in_order, only: [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "Accueil", :root_path
+  add_breadcrumb "Fermes à proximité", :farms_path
+
   # GET /product_in_orders
   # GET /product_in_orders.json
   def index
