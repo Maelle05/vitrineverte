@@ -16,6 +16,8 @@ gem 'breadcrumbs_on_rails'
 gem 'bootstrap'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise-i18n'
+gem 'leaflet-rails'
+gem 'open_street_map'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

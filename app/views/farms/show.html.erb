@@ -8,56 +8,55 @@
       <%= @farm.description %>
     </p>
 <div class="d-flex py-5 align-items-center"> 
-<div class="leftSide px-5">
-
-
+<div class="row px-5">
+  <div class='col'>
     <div class="d-flex justify-content-start align-items-center py-3">
     <%= image_tag ("clock.svg"), width: 20 %>
     <h3 class="h5 px-4">Horaires</h3>
     </div>
-     <p>
-      <%= @farm.hours %>
-    </p>
-
+     <p><%= @farm.hours %></p>
      <div class="d-flex justify-content-start">
     <%= image_tag ("adresse.svg"), width: 20 %>
     <h3 class="h5 px-4">Adresse</h3>
     </div>
+      <p><%= @farm.address %></p>
+      <p><%= @farm.city %></p>
+      <p><%= @farm.zipcode %></p>
+      <div class="d-flex justify-content-start">
+        <%= image_tag ("phone.svg"), width: 20 %>
+        <h3 class="h5 px-4">Téléphone</h3>
+      </div>
       <p>
-        <%= @farm.address %>
+        <%= @farm.phone %>
       </p>
+      <div class="d-flex justify-content-start">
+        <%= image_tag ("coins.svg"), width: 20 %>
+        <h3 class="h5 px-4">Accepte le paiement</h3>
+      </div>
       <p>
-        <%= @farm.city %>
+        <%= @farm.payment %>
       </p>
-       <p>
-        <%= @farm.zipcode %>
-      </p>
-
-    <div class="d-flex justify-content-start">
-    <%= image_tag ("phone.svg"), width: 20 %>
-    <h3 class="h5 px-4">Téléphone</h3>
     </div>
+  </div>
+  <div class="col">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+      <div id="mapid"></div>
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
-     <p>
-      <%= @farm.phone %>
-    </p>
+    <script>
+        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+                      // Il est toujours bien de laisser le lien vers la source des données
+                      attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+                      minZoom: 1,
+                      maxZoom: 20
+                  }).addTo(mymap);
+    </script>
+    <style>
+      #mapid { height: 45vh; width: 100% }
+    </style>
 
-     <div class="d-flex justify-content-start">
-    <%= image_tag ("coins.svg"), width: 20 %>
-    <h3 class="h5 px-4">Accepte le paiement</h3>
-    </div>
-
-     <p>
-      <%= @farm.payment %>
-    </p>
-      
-   </div>
-
-
-   <div class="rightSide">
-     <%# <%= image_tag ("carte_test.png") %> 
-   </div> 
-  
+  </div>
 </div> 
 </div>
 
@@ -142,6 +141,7 @@
 <% if current_user == @farm.user %>
   <%= link_to 'Nouveau produit', new_farm_product_path(@farm), class: 'btn btn-primary' %>
 <% end %>
+
 
 
 <%= javascript_pack_tag 'orderSummary', 'data-turbolinks-track': 'reload' %>
