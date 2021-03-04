@@ -1,4 +1,4 @@
-<section class='container'>
+<section class='container mb-5'>
     <h1>Mes commandes : </h1>
     <% if current_user != @farm.user %>
       <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
