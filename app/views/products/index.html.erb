@@ -1,5 +1,3 @@
-<%= @farm.address %>
-
 <h4 class="m-5 text-center">Votre commande pour "<%= @farm %>"</h4>
 <%= simple_form_for [@farm, @order] do |f| %>
 
@@ -56,7 +54,7 @@
       </ul>
     </div>
     <br>
-    <%= f.button :submit, 'Enregistrer et valider la commande' %>
+    <%= f.button :submit, 'Enregistrer et valider la commande', class: 'm-5' %>
   <% end %>
 <% end %>
 
