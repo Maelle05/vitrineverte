@@ -42,12 +42,6 @@
   <%= @farm.email %>
 </p>
 
-
-
-<% @farm.products.each do |product| %>
-  <li><%= product %></li>
-<% end %>
-
 <% if user_signed_in? && current_user == @farm.user %>
 
   <%= link_to 'Modifier ma ferme', edit_farm_path(@farm), class: 'btn btn-primary' %>
@@ -55,9 +49,77 @@
   <%= link_to 'Voir les commandes passés à ma ferme', farm_orders_path(@farm), class: 'btn btn-primary' %>
 
 <% elsif user_signed_in?  %>
-  <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
-  <%= link_to 'Voir mes commandes ', farm_orders_path(@farm),class: 'btn btn-primary' %>
-
+  <%= link_to 'Voir mes commandes à cette ferme', farm_orders_path(@farm),class: 'btn btn-primary' %>
 <% else %>
   <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
 <% end %>
+
+
+<h4 class="m-5 text-center">Votre commande pour "<%= @farm %>"</h4>
+<%= simple_form_for [@farm, @order] do |f| %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Produits</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Disponibilité du produit </th>
+        <% if current_user != @farm.user %>
+          <th>Quantité commandée</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+          <tr>
+            <% if current_user == @farm.user %>
+              <td class='products' >Modifier le produit <%= link_to product, edit_farm_product_path(@farm, product) %></td>
+            <% else %>
+              <td <% if product.active %> class='products' <% end %> ><%= link_to product, [@farm, product] %></td>
+            <% end %>
+            <td><%= product.description %></td>
+            <td>
+              <strong <% if product.active %> class='price' <% end %>> <%= product.price %> </strong>
+              <%= product.product_unit %>
+            </td>
+            <td>
+              <% if product.active %> <p class='quantity'> <%#= product.quantity %> </p> <% else %> Ce produit n'est pas disponibe actuellement <% end %>
+            </td>
+            <% if current_user != @farm.user  %>
+              <td>
+                
+                <% if !product.active %>
+                  <input type="number" readonly="readonly" name="order[product_in_orders][]" class="form-control" min="0" max="0" value="0">
+                <%else %>
+                 <input type="number" name="order[product_in_orders][]" class="form-control inputProduct" min="0"  max="<%#=product.quantity%>" value="<%= @order.item_for(product).quantity %>" >
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if current_user != @farm.user %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Mon Panier
+      </div>
+      <ul class="list-group list-group-flush" id='renderOrderSummery'>
+        <!-- /!\ EVAN l'auto render est fait dans orderSummary.js si tu veux changer les class de la liste ;) -->
+      </ul>
+    </div>
+    <br>
+    <%= f.button :submit, 'Enregistrer et valider la commande' %>
+  <% end %>
+<% end %>
+
+
+
+<% if current_user == @farm.user %>
+  <%= link_to 'Nouveau produit', new_farm_product_path(@farm), class: 'btn btn-primary' %>
+<% end %>
+
+
+<%= javascript_pack_tag 'orderSummary', 'data-turbolinks-track': 'reload' %>

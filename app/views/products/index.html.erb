@@ -1,6 +1,6 @@
-<h1 class="m-5 text-center">Votre commande pour "<%= @farm %>"</h1>
+<%= @farm.address %>
 
-
+<h4 class="m-5 text-center">Votre commande pour "<%= @farm %>"</h4>
 <%= simple_form_for [@farm, @order] do |f| %>
 
   <table class="table">
