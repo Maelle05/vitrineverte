@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :load_farm
 
-  # add_breadcrumb "home", :root_path
+  add_breadcrumb "Accueil", :root_path
 
 
   # GET /orders
