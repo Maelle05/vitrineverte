@@ -23,7 +23,7 @@ function renderList(){
     var priceOrder = 0
     for (let k = 0; k < summaryTable.length; k++) {
         if(summaryTable[k][1] > 0){
-            listContainerSummary.innerHTML += '<li class="list-group-item">' + summaryTable[k][1] + ' x ' + summaryTable[k][0] + ' <p class="position-absolute top-50 end-0 translate-middle-y" > € ' + summaryTable[k][1]*summaryTable[k][2] + '</p> </li>';
+            listContainerSummary.innerHTML += '<li class="list-group-item">' + summaryTable[k][1] + ' x ' + summaryTable[k][0] + ' <p class="text-right" > € ' + summaryTable[k][1]*summaryTable[k][2] + '</p> </li>';
             priceOrder = priceOrder + (summaryTable[k][1]*summaryTable[k][2])
         }
     }    
