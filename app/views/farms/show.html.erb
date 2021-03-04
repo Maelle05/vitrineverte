@@ -9,7 +9,7 @@
     </p>
 <div class="d-flex py-5 align-items-center"> 
 <div class="row px-5">
-  <div class='col'>
+  <div class='col-12'>
     <div class="d-flex justify-content-start align-items-center py-3">
     <%= image_tag ("clock.svg"), width: 20 %>
     <h3 class="h5 px-4">Horaires</h3>
@@ -38,22 +38,34 @@
       </p>
     </div>
   </div>
-  <div class="col">
+  <div class="col-7">
      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
       <div id="mapid"></div>
       <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
     <script>
-        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-                      // Il est toujours bien de laisser le lien vers la source des données
-                      attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
-                      minZoom: 1,
-                      maxZoom: 20
-                  }).addTo(mymap);
+        
+
+        fetch("https://api-adresse.data.gouv.fr/search/?q=<%= @farm.address %>").then((response) => response.json()).then(function(json) {
+
+          console.log(json.features)
+          let x = json.features[0].geometry.coordinates[1]
+          let y = json.features[0].geometry.coordinates[0]
+
+          console.log(x, y)
+          var mymap = L.map('mapid').setView([x, y], 13);
+          L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+                        // Il est toujours bien de laisser le lien vers la source des données
+                        attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+                        minZoom: 1,
+                        maxZoom: 20
+                    }).addTo(mymap);
+          L.marker([x, y]).addTo(mymap)
+        
+        })
     </script>
     <style>
-      #mapid { height: 45vh; width: 100% }
+      #mapid { height: 300px;  }
     </style>
 
   </div>
