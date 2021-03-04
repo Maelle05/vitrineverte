@@ -1,0 +1,16 @@
+<div class="bg-primary mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag ("home-prod.png"), class: "img-fluid" %>
+      </div>
+      <div class="offset-md-1 col-md-5 text-white d-flex align-items-center">
+        <div>
+          <h3 class="fw-bold">Vous êtes producteur ? </h3>
+          <p>Enregistrez votre ferme pour faciliter votre gestion de commandes<p>
+          <%= link_to 'Enregistrer ma ferme', new_farm_path, class: 'btn btn-light'%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

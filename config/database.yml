@@ -26,8 +26,8 @@ development:
   <<: *default
   database: vitrineverte_development
   host: localhost
-  username: vitrineverte
-  password: vv
+  # username: vitrineverte
+  # password: vv
 
 
   # The specified database role being used to connect to postgres.

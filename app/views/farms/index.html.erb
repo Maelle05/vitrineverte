@@ -1,14 +1,7 @@
 <section class="container">
   <h1 class="text-center farm-title">Découvrez les producteurs près de chez vous</h1>
-  
-  <%= render "shared/farmList" %>
-  
-  <div class="d-flex justify-content-around">
-  
-    <div><%= image_tag "producteurterre.png", class: "img-fluid" %></div>
-    <div class="d-flex flex-column justify-content-center">
-      <h2>Vous êtes producteur ? </h2>
-      <p>Enregistrez votre ferme pour faciliter votre gestion de commandes</p>
-      <%= link_to 'Créer votre ferme', new_farm_path, class: 'btn btn-primary' %>
-    </div>
-  </div>
+
+  <%= render "farmList" %>
+</section>
+
+  <%= render 'ctaProducteur' %>

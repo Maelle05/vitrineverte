@@ -1,0 +1,18 @@
+<div class="row">
+  <% @farms.each do |farm| %>
+    <div class="col-md-4">
+      <div class="card border-0 farm-card">
+        <%= image_tag ("card-farm-img.png"), class: "card-img-top rounded-0", alt: "" %>
+        <div class="card-body">
+          <h5 class="card-title fw-bold"><%= farm.name %></h5>
+          <p class="card-text"><%= farm.description %></p>
+          <%= link_to 'Passer commande', farm, class: 'btn btn-primary stretched-link mb-5'%>
+          <div class="text-right">
+            <p><%= farm.city %></p>
+            <%= image_tag ("location.png"), alt: "" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
