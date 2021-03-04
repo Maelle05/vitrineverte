@@ -1,6 +1,20 @@
-<section class="container">
-    <%= render 'breadcrumb' %>
-  <h1 class="text-center farm-title py-5">Découvrez les producteurs près de chez vous</h1>
-  <%= render "list" %>
-</section>
-<%= render 'ctaProducteur' %>
+<h1 class="text-center fw-bold m-5">Découvrez les producteurs près de chez vous</h1>
+
+<%= render "farms/list" %>
+
+<div class="m-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag ("home/prod.png"), class: "img-fluid" %>
+      </div>
+      <div class="offset-md-1 col-md-5 d-flex align-items-center">
+        <div>
+          <h3 class="fw-bold"> Vous êtes producteur ? </h3>
+          <p>Enregistrez votre ferme pour faciliter votre gestion de commandes<p>
+          <%= link_to 'Enregistrer ma ferme', new_farm_path, class: 'btn btn-primary'%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

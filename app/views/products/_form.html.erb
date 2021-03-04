@@ -3,15 +3,14 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :product_unit %>
-    <%= f.input :quantity %>
-    <%= f.input :active %>
+    <%= f.input :name, label: 'Nom du produit' %>
+    <%= f.input :description, label: 'Description du produit' %>
+    <%= f.input :price, label: 'Prix' %>
+    <%= f.input :product_unit, label: 'Unité du Prix (ex: le kg/la barquette)' %>
+    <%= f.input :quantity, label: 'Stock disponibe' %>
+    <%= f.input :active, label: "Le produit est t'il actuelement disponible a la vente ?  "%>
   </div>
-
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, value: 'Valider les changements' %>
   </div>
 <% end %>

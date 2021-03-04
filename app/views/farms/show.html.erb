@@ -1,52 +1,52 @@
+<%= content_for :title, 'Favorisons les circuits courts' %>
+
+<div class="container">
+  
+     <h1 class="h3 py-3"><%= @farm %></h1>
+    
+    <p>
+      <%= @farm.description %>
+    </p>
 
 
-<%= image_tag "bg_info_producteur.png", class: 'img-fluid' %>
+    <div class="d-flex justify-content-start">
+    <%= image_tag ("clock.svg"), width: 20 %>
+    <h3 class="h4 p-3">Horaires</h3>
+    </div>
+     <p>
+      <%= @farm.hours %>
+    </p>
 
-<h1 class="text-center"><%= @farm %></h1>
+     <div class="d-flex justify-content-start">
+    <%= image_tag ("adresse.svg"), width: 20 %>
+    <h3 class="h4 p-3">Adresse</h3>
+    </div>
+      <p>
+        <%= @farm.address %>
+      </p>
+      <p>
+        <%= @farm.city %>
+      </p>
+       <p>
+        <%= @farm.zipcode %>
+      </p>
 
-<p>
-  <%= @farm.description %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%= @farm.address %>
-</p>
+    <div class="d-flex justify-content-start">
+    <%= image_tag ("clock.svg"), width: 20 %>
+    <h3 class="h4 p-3">Téléphone</h3>
+    </div>
 
-<p>
-  <strong>Zipcode:</strong>
-  <%= @farm.zipcode %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @farm.city %>
-</p>
-
-<p>
-  <strong>Hours:</strong>
-  <%= @farm.hours %>
-</p>
-
-<p>
-  <strong>Payment:</strong>
-  <%= @farm.payment %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @farm.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @farm.email %>
-</p>
-
-
-
-<% @farm.products.each do |product| %>
-  <li><%= product %></li>
-<% end %>
+     <p>
+      <%= @farm.phone %>
+    </p>
+      
+   
+    
+    <p class="py-3">
+    <strong>Accepte le paiement</strong>
+    <%= @farm.payment %>
+    </p>
+</div>
 
 <% if user_signed_in? && current_user == @farm.user %>
 
@@ -55,9 +55,77 @@
   <%= link_to 'Voir les commandes passés à ma ferme', farm_orders_path(@farm), class: 'btn btn-primary' %>
 
 <% elsif user_signed_in?  %>
-  <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
-  <%= link_to 'Voir mes commandes ', farm_orders_path(@farm),class: 'btn btn-primary' %>
-
+  <%= link_to 'Voir mes commandes à cette ferme', farm_orders_path(@farm),class: 'btn btn-primary' %>
 <% else %>
   <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
 <% end %>
+
+
+<h4 class="m-5 text-center">Votre commande pour "<%= @farm %>"</h4>
+<%= simple_form_for [@farm, @order] do |f| %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Produits</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Disponibilité du produit </th>
+        <% if current_user != @farm.user %>
+          <th>Quantité commandée</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+          <tr>
+            <% if current_user == @farm.user %>
+              <td class='products' >Modifier le produit <%= link_to product, edit_farm_product_path(@farm, product) %></td>
+            <% else %>
+              <td <% if product.active %> class='products' <% end %> ><%= link_to product, [@farm, product] %></td>
+            <% end %>
+            <td><%= product.description %></td>
+            <td>
+              <strong <% if product.active %> class='price' <% end %>> <%= product.price %> </strong>
+              <%= product.product_unit %>
+            </td>
+            <td>
+              <% if product.active %> <p class='quantity'> <%#= product.quantity %> </p> <% else %> Ce produit n'est pas disponibe actuellement <% end %>
+            </td>
+            <% if current_user != @farm.user  %>
+              <td>
+                
+                <% if !product.active %>
+                  <input type="number" readonly="readonly" name="order[product_in_orders][]" class="form-control" min="0" max="0" value="0">
+                <%else %>
+                 <input type="number" name="order[product_in_orders][]" class="form-control inputProduct" min="0"  max="<%#=product.quantity%>" value="<%= @order.item_for(product).quantity %>" >
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if current_user != @farm.user %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Mon Panier
+      </div>
+      <ul class="list-group list-group-flush" id='renderOrderSummery'>
+        <!-- /!\ EVAN l'auto render est fait dans orderSummary.js si tu veux changer les class de la liste ;) -->
+      </ul>
+    </div>
+    <br>
+    <%= f.button :submit, 'Enregistrer et valider la commande', class:'mb-5' %>
+  <% end %>
+<% end %>
+
+
+
+<% if current_user == @farm.user %>
+  <%= link_to 'Nouveau produit', new_farm_product_path(@farm), class: 'btn btn-primary' %>
+<% end %>
+
+
+<%= javascript_pack_tag 'orderSummary', 'data-turbolinks-track': 'reload' %>
