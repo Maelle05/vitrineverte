@@ -46,7 +46,7 @@
 
 <% if user_signed_in? && current_user == @farm.user %>
 
-  <%= link_to 'Modifier ma ferme', edit_farm_path(@farm), class: 'btn btn-primary' %> 
+  <%= link_to 'Modifier ma ferme', edit_farm_path(@farm), class: 'btn btn-primary' %>
   <%= link_to 'Voir et modifier mes produits', farm_products_path(@farm), class: 'btn btn-primary' %>
   <%= link_to 'Voir les commandes passés à ma ferme', farm_orders_path(@farm), class: 'btn btn-primary' %>
 
@@ -57,6 +57,3 @@
 <% else %>
   <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
 <% end %>
-
-<%= link_to 'Back', farms_path %>
- 

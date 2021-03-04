@@ -9,9 +9,7 @@
     <%= javascript_pack_tag 'application' %>
   </head>
   <body>
-    <%= render 'navbar' %>
-    <%= render 'breadcrumb' %>
-    <main class="container mt-5">
+    <main>
       <%= yield %>
     </main>
     <%= render "footer" %>

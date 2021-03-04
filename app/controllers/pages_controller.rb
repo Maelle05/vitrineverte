@@ -3,9 +3,9 @@ class PagesController < ApplicationController
 
   def home
     @farms = Farm.all
+    render layout: 'minimal'
   end
 
   def legalnotice
   end
-  
 end
