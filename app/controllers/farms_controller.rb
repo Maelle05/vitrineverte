@@ -26,6 +26,9 @@ class FarmsController < ApplicationController
   def new
     @farm = Farm.new
     add_breadcrumb "Créer une ferme", :new_farm_path
+
+    render layout: 'minimal'
+
   end
 
   # GET /farms/1/edit
