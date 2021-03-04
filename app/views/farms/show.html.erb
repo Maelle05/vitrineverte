@@ -1,5 +1,16 @@
-<h1><%= @farm %></h1>
 
+
+<%= image_tag "bg_info_producteur.png" %>
+
+<div class="container">
+<div class="container">
+    <h1 class="text-center"><%= @farm %></h1>
+</div>
+
+
+<p>
+  <%= @farm.description %>
+</p>
 <p>
   <strong>Address:</strong>
   <%= @farm.address %>
@@ -35,10 +46,7 @@
   <%= @farm.email %>
 </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @farm.description %>
-</p>
+
 
 <% @farm.products.each do |product| %>
   <li><%= product %></li>
@@ -59,4 +67,4 @@
 <% end %>
 
 <%= link_to 'Back', farms_path %>
- 
+<div>
