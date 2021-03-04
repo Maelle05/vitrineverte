@@ -1,3 +1,5 @@
-<ol class="breadcrumb bg-transparent pt-5">
-  <%= render_breadcrumbs :tag => :li, :separator => " > " %>
-</ol>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-transparent pl-0 pt-5">
+    <%= render_breadcrumbs builder: BootstrapBreadcrumbsBuilder %>
+  </ol>
+</nav>

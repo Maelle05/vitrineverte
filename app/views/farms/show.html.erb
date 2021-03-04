@@ -1,13 +1,9 @@
 <%= content_for :title, 'Favorisons les circuits courts' %>
 
-<div class="container">
+ <h1 class="py-3"><%= @farm %></h1>
+<p><%= @farm.description %></p>
 
-     <h1 class="h3 py-3"><%= @farm %></h1>
-    
-    <p>
-      <%= @farm.description %>
-    </p>
-<div class="d-flex py-5 align-items-center"> 
+<div class="d-flex py-5 align-items-center">
 <div class="row px-5">
   <div class='col'>
     <div class="d-flex justify-content-start align-items-center py-3">
@@ -57,7 +53,7 @@
     </style>
 
   </div>
-</div> 
+</div>
 </div>
 
 <% if user_signed_in? && current_user == @farm.user %>
@@ -110,7 +106,7 @@
             </td>
             <% if current_user != @farm.user  %>
               <td>
-                
+
                 <% if !product.active %>
                   <input type="number" readonly="readonly" name="order[product_in_orders][]" class="form-control" min="0" max="0" value="0">
                 <%else %>
