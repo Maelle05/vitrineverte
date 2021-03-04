@@ -1,52 +1,64 @@
+<%= content_for :title, 'Favorisons les circuits courts' %>
 
+<div class="container">
 
-<%= image_tag "bg_info_producteur.png", class: 'img-fluid' %>
+     <h1 class="h3 py-3"><%= @farm %></h1>
+    
+    <p>
+      <%= @farm.description %>
+    </p>
+<div class="d-flex py-5 align-items-center"> 
+<div class="row px-5">
+  <div class='col'>
+    <div class="d-flex justify-content-start align-items-center py-3">
+    <%= image_tag ("clock.svg"), width: 20 %>
+    <h3 class="h5 px-4">Horaires</h3>
+    </div>
+     <p><%= @farm.hours %></p>
+     <div class="d-flex justify-content-start">
+    <%= image_tag ("adresse.svg"), width: 20 %>
+    <h3 class="h5 px-4">Adresse</h3>
+    </div>
+      <p><%= @farm.address %></p>
+      <p><%= @farm.city %></p>
+      <p><%= @farm.zipcode %></p>
+      <div class="d-flex justify-content-start">
+        <%= image_tag ("phone.svg"), width: 20 %>
+        <h3 class="h5 px-4">Téléphone</h3>
+      </div>
+      <p>
+        <%= @farm.phone %>
+      </p>
+      <div class="d-flex justify-content-start">
+        <%= image_tag ("coins.svg"), width: 20 %>
+        <h3 class="h5 px-4">Accepte le paiement</h3>
+      </div>
+      <p>
+        <%= @farm.payment %>
+      </p>
+    </div>
+  </div>
+  <div class="col">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+      <div id="mapid"></div>
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
-<h1 class="text-center"><%= @farm %></h1>
+    <script>
+        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+                      // Il est toujours bien de laisser le lien vers la source des données
+                      attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+                      minZoom: 1,
+                      maxZoom: 20
+                  }).addTo(mymap);
+    </script>
+    <style>
+      #mapid { height: 45vh; width: 100% }
+    </style>
 
-<p>
-  <%= @farm.description %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%= @farm.address %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @farm.zipcode %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @farm.city %>
-</p>
-
-<p>
-  <strong>Hours:</strong>
-  <%= @farm.hours %>
-</p>
-
-<p>
-  <strong>Payment:</strong>
-  <%= @farm.payment %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @farm.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @farm.email %>
-</p>
-
-
-
-<% @farm.products.each do |product| %>
-  <li><%= product %></li>
-<% end %>
+  </div>
+</div> 
+</div>
 
 <% if user_signed_in? && current_user == @farm.user %>
 
@@ -55,9 +67,81 @@
   <%= link_to 'Voir les commandes passés à ma ferme', farm_orders_path(@farm), class: 'btn btn-primary' %>
 
 <% elsif user_signed_in?  %>
-  <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
-  <%= link_to 'Voir mes commandes ', farm_orders_path(@farm),class: 'btn btn-primary' %>
-
+  <%= link_to 'Voir mes commandes à cette ferme', farm_orders_path(@farm),class: 'btn btn-primary' %>
 <% else %>
   <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
 <% end %>
+
+<% if current_user != @farm.user%>
+  <h4 class="m-5 text-center">Votre commande pour "<%= @farm %>"</h4>
+<% else %>
+  <h4 class="m-5 text-center">Mes produits </h4>
+<% end %>
+<%= simple_form_for [@farm, @order] do |f| %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Produits</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Disponibilité du produit </th>
+        <% if current_user != @farm.user %>
+          <th>Quantité commandée</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+          <tr>
+            <% if current_user == @farm.user %>
+              <td class='products' >Modifier le produit <%= link_to product, edit_farm_product_path(@farm, product) %></td>
+            <% else %>
+              <td <% if product.active %> class='products' <% end %> ><%= link_to product, [@farm, product] %></td>
+            <% end %>
+            <td><%= product.description %></td>
+            <td>
+              <strong <% if product.active %> class='price' <% end %>> <%= product.price %> </strong>
+              <%= product.product_unit %>
+            </td>
+            <td>
+              <% if product.active %> <p class='quantity'> <%#= product.quantity %> </p> <% else %> Ce produit n'est pas disponibe actuellement <% end %>
+            </td>
+            <% if current_user != @farm.user  %>
+              <td>
+                
+                <% if !product.active %>
+                  <input type="number" readonly="readonly" name="order[product_in_orders][]" class="form-control" min="0" max="0" value="0">
+                <%else %>
+                 <input type="number" name="order[product_in_orders][]" class="form-control inputProduct" min="0"  max="<%#=product.quantity%>" value="<%= @order.item_for(product).quantity %>" >
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if current_user != @farm.user %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Mon Panier
+      </div>
+      <ul class="list-group list-group-flush" id='renderOrderSummery'>
+        <!-- /!\ EVAN l'auto render est fait dans orderSummary.js si tu veux changer les class de la liste ;) -->
+      </ul>
+    </div>
+    <br>
+    <%= f.button :submit, 'Enregistrer et valider la commande', class:'mb-5' %>
+  <% end %>
+<% end %>
+
+
+
+<% if current_user == @farm.user %>
+  <%= link_to 'Nouveau produit', new_farm_product_path(@farm), class: 'btn btn-primary' %>
+<% end %>
+
+
+
+<%= javascript_pack_tag 'orderSummary', 'data-turbolinks-track': 'reload' %>

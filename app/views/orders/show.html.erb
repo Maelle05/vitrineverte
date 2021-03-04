@@ -1,4 +1,4 @@
-<section class='container'>
+<section class='container mb-5'>
 
 <h1><%= @order %></h1>
 <p>
@@ -12,7 +12,7 @@
   <%= @order.farm %>
 </p>
 
-<p>
+<p class="">
   <strong> La commande a t'elle été prepaté :</strong>
   <%if  @order.ready %>
     <p> Oui </p>
@@ -36,7 +36,7 @@
       <th scope="col">Produits</th>
       <th scope="col">Quantité</th>
       <th scope="col">Prix</th>
-      <th scope="col">Total du produit</th>
+      <th scope="col">Total pour ce produit</th>
     </tr>
   </thead>
   <tbody>
@@ -45,17 +45,18 @@
         <td><%= product_in_order.product %></td>
         <td><%= product_in_order.quantity %></td>
         <td><%= product_in_order.product.price %></td>
-        <td class='Tproduct'><%= product_in_order.product.price*product_in_order.quantity %></td>
+        <td class='Tproduct'><%= product_in_order.product.price*product_in_order.quantity %> €</td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <p>TOTAL : <strong id='total'></strong> € </p>
 <% if current_user == @farm.user %>
-  <%= link_to 'Changer le statut de la commande', edit_farm_order_path(@farm, @order) %>
+  <%= link_to 'Changer le statut de la commande', edit_farm_order_path(@farm, @order), class: 'btn btn-primary m-3' %>
 <% else %>
   <% if (@order.ready != true) %>
-    <%= link_to 'Modifier la commannde', farm_products_path(@farm) %>
+    <%= link_to 'Modifier la commande', farm_products_path(@farm), class: 'btn btn-primary m-3' %>
+    <%= link_to 'Suprimer la commande', farm_order_path(@farm, @order), method: :delete, class: 'btn btn-danger m-3' %>
   <% else %>
     <% if @order.taken != true %>
       <p>La commande a déja été prepaté par le producteur, vous ne pouvez plus la modifier</p>

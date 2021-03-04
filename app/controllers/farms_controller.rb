@@ -2,30 +2,44 @@ class FarmsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_farm, only: [:show, :edit, :update, :destroy]
 
-  # add_breadcrumb "home", :root_path
+  add_breadcrumb "Accueil", :root_path
+  add_breadcrumb "Fermes à proximité", :farms_path
 
 
   # GET /farms
   # GET /farms.json
-  def index
+  def index    
     @farms = Farm.all
+    render layout: 'minimal'
   end
 
   # GET /farms/1
   # GET /farms/1.json
   def show
-    # add_breadcrumb "Show", :farm_path
+<<<<<<< HEAD
+    client = OpenStreetMap::Client.new
+    add_breadcrumb @farm, :farm_path
+=======
+>>>>>>> 6a364e088516db0b2f82cdca8900a2894eed86ec
+    @products = @farm.products
+    @order = Order.where(user: current_user, farm: @farm, ready: [nil, false]).first_or_initialize
+    add_breadcrumb @farm, :farm_path
+
   end
 
   # GET /farms/new
   def new
     @farm = Farm.new
-    # add_breadcrumb "New farm", :new_farm_path
+    add_breadcrumb "Créer une ferme", :new_farm_path
+
+    render layout: 'minimal'
+
   end
 
   # GET /farms/1/edit
   def edit
-    # add_breadcrumb "New farm", :edit_farm_path
+    add_breadcrumb @farm, farm_path
+    add_breadcrumb "Modifier ma ferme", :edit_farm_path
   end
 
   # POST /farms

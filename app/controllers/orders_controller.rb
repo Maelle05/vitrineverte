@@ -3,18 +3,22 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :load_farm
 
-  # add_breadcrumb "home", :root_path
-
-
+  add_breadcrumb "Accueil", :root_path
+  add_breadcrumb "Fermes à proximité", :farms_path
+  
   # GET /orders
   # GET /orders.json
   def index
+    @farms = Farm.all
     @orders = Order.all
+    add_breadcrumb "#{@farm}", farm_path(@farm)
+    add_breadcrumb "Mes commandes", farm_orders_path
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    
   end
 
   # GET /orders/new
@@ -66,7 +70,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to farm_url(@farm), notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

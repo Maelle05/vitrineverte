@@ -3,28 +3,42 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :load_farm
 
-  # add_breadcrumb "home", :root_path
-  # add_breadcrumb "ferme", :farm_path
+  add_breadcrumb "Accueil", :root_path
+  add_breadcrumb "Fermes à proximité", :farms_path
 
   # GET /products
   # GET /products.json
   def index
     @products = @farm.products
     @order = Order.where(user: current_user, farm: @farm, ready: [nil, false]).first_or_initialize
+
+    add_breadcrumb "#{@farm}", farm_path(@farm)
+    add_breadcrumb "Produits", farm_products_path
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    @products = @farm.products
+    add_breadcrumb "#{@farm}", farm_path(@farm)
+    add_breadcrumb "Produits", farm_products_path
+    add_breadcrumb "#{@product}", farm_product_path
   end
 
   # GET /products/new
   def new
     @product = Product.new
+    @products = @farm.products
+    add_breadcrumb "#{@farm}", farm_path(@farm)
+    add_breadcrumb "Produits", farm_products_path
+    add_breadcrumb "Nouveau produit", new_farm_product_path
   end
 
   # GET /products/1/edit
   def edit
+    add_breadcrumb "#{@farm}", farm_path(@farm)
+    add_breadcrumb "Produits", farm_products_path
+    add_breadcrumb "Éditer #{@product}", edit_farm_product_path
   end
 
   # POST /products

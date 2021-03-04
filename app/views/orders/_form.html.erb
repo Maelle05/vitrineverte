@@ -3,11 +3,14 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   
   <div class="form-inputs">
-    <%= f.input :ready %>
-    <%= f.input :taken %>
+    <% if !order.ready %>
+      <%= f.input :ready , label: "la commande est prête" , class: '' %>
+    <% else %>
+      <%= f.input :taken, label: "la commande a été retirée" , class: '' %>
+    <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, value: "Valider" %>
   </div>
 <% end %>

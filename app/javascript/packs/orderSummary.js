@@ -7,7 +7,7 @@ var summaryTable = []
 
 
 for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener("click", function(){updateOrder(i)}, false);
+    inputs[i].addEventListener("change", function(){updateOrder(i)}, false);
 }
 
 for (let y = 0; y < productTable.length; y++) {
