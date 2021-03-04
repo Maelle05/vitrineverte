@@ -1,12 +1,8 @@
 
 
-<%= image_tag "bg_info_producteur.png" %>
+<%= image_tag "bg_info_producteur.png", class: 'img-fluid' %>
 
-<div class="container">
-<div class="container">
-    <h1 class="text-center"><%= @farm %></h1>
-</div>
-
+<h1 class="text-center"><%= @farm %></h1>
 
 <p>
   <%= @farm.description %>
