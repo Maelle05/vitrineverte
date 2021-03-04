@@ -1,8 +1,20 @@
-<section>
-    <h1>New Farm</h1>
+<div class="banner-create-farm container-fluid p-5 text-center ">
+    <h1>Création de votre ferme</h1>
+</div>
+
+<section class="container">
+    <%= render 'breadcrumb' %>
+
+
+    <div class="row py-5">
+        <div class="col-md-5">
+            <p>Bonjour,</p>
+            <p>Remplissez ce formulaire afin de créer votre ferme sur Vitrine verte. Certaines de ces informations seront visibles par vos clients. Vous pourrez les modifier par la suite.</p>
+        </div>
+    </div>
     
     <%= render 'form', farm: @farm %>
     
-    <%= link_to 'Back', farms_path %>
+    <%= link_to 'Retour', farms_path %>
 
 </section> 

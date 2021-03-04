@@ -1,17 +1,19 @@
 <%= content_for :title, 'Favorisons les circuits courts' %>
 
 <div class="container">
-  
+
      <h1 class="h3 py-3"><%= @farm %></h1>
     
     <p>
       <%= @farm.description %>
     </p>
+<div class="d-flex py-5"> 
+<div class="leftSide px-5">
 
 
-    <div class="d-flex justify-content-start">
+    <div class="d-flex justify-content-start align-items-center py-3">
     <%= image_tag ("clock.svg"), width: 20 %>
-    <h3 class="h4 p-3">Horaires</h3>
+    <h3 class="h5 px-4">Horaires</h3>
     </div>
      <p>
       <%= @farm.hours %>
@@ -19,7 +21,7 @@
 
      <div class="d-flex justify-content-start">
     <%= image_tag ("adresse.svg"), width: 20 %>
-    <h3 class="h4 p-3">Adresse</h3>
+    <h3 class="h5 px-4">Adresse</h3>
     </div>
       <p>
         <%= @farm.address %>
@@ -32,20 +34,31 @@
       </p>
 
     <div class="d-flex justify-content-start">
-    <%= image_tag ("clock.svg"), width: 20 %>
-    <h3 class="h4 p-3">Téléphone</h3>
+    <%= image_tag ("phone.svg"), width: 20 %>
+    <h3 class="h5 px-4">Téléphone</h3>
     </div>
 
      <p>
       <%= @farm.phone %>
     </p>
-      
-   
-    
-    <p class="py-3">
-    <strong>Accepte le paiement</strong>
-    <%= @farm.payment %>
+
+     <div class="d-flex justify-content-start">
+    <%= image_tag ("coin.svg"), width: 20 %>
+    <h3 class="h5 px-4">Accepte le paiement</h3>
+    </div>
+
+     <p>
+      <%= @farm.payment %>
     </p>
+      
+   </div>
+
+
+   <div class="rightSide">
+     <%= image_tag ("carte_test.png") %>
+   </div> 
+  
+</div> 
 </div>
 
 <% if user_signed_in? && current_user == @farm.user %>
