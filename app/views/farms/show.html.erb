@@ -73,8 +73,11 @@
   <%= link_to 'Passer une commande', farm_products_path(@farm), class: 'btn btn-primary' %>
 <% end %>
 
-
-<h4 class="m-5 text-center">Votre commande pour "<%= @farm %>"</h4>
+<% if current_user != @farm.user%>
+  <h4 class="m-5 text-center">Votre commande pour "<%= @farm %>"</h4>
+<% else %>
+  <h4 class="m-5 text-center">Mes produits </h4>
+<% end %>
 <%= simple_form_for [@farm, @order] do |f| %>
 
   <table class="table">
