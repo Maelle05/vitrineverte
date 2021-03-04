@@ -48,26 +48,6 @@
     </p>
 </div>
 
-<h1 class="text-center"><%= @farm %></h1>
-
-
-
-
-
-
-
-
-
-<p>
-  <strong>Phone:</strong>
-  <%= @farm.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @farm.email %>
-</p>
-
 <% if user_signed_in? && current_user == @farm.user %>
 
   <%= link_to 'Modifier ma ferme', edit_farm_path(@farm), class: 'btn btn-primary' %>
@@ -137,7 +117,7 @@
       </ul>
     </div>
     <br>
-    <%= f.button :submit, 'Enregistrer et valider la commande' %>
+    <%= f.button :submit, 'Enregistrer et valider la commande', class:'mb-5' %>
   <% end %>
 <% end %>
 
