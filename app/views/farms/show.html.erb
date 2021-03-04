@@ -1,36 +1,62 @@
+<%= content_for :title, 'Favorisons les circuits courts' %>
+
+<div class="container">
+  
+     <h1 class="h3 py-3"><%= @farm %></h1>
+    
+    <p>
+      <%= @farm.description %>
+    </p>
 
 
-<%= image_tag "bg_info_producteur.png", class: 'img-fluid' %>
+    <div class="d-flex justify-content-start">
+    <%= image_tag ("clock.svg"), width: 20 %>
+    <h3 class="h4 p-3">Horaires</h3>
+    </div>
+     <p>
+      <%= @farm.hours %>
+    </p>
+
+     <div class="d-flex justify-content-start">
+    <%= image_tag ("adresse.svg"), width: 20 %>
+    <h3 class="h4 p-3">Adresse</h3>
+    </div>
+      <p>
+        <%= @farm.address %>
+      </p>
+      <p>
+        <%= @farm.city %>
+      </p>
+       <p>
+        <%= @farm.zipcode %>
+      </p>
+
+    <div class="d-flex justify-content-start">
+    <%= image_tag ("clock.svg"), width: 20 %>
+    <h3 class="h4 p-3">Téléphone</h3>
+    </div>
+
+     <p>
+      <%= @farm.phone %>
+    </p>
+      
+   
+    
+    <p class="py-3">
+    <strong>Accepte le paiement</strong>
+    <%= @farm.payment %>
+    </p>
+</div>
 
 <h1 class="text-center"><%= @farm %></h1>
 
-<p>
-  <%= @farm.description %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%= @farm.address %>
-</p>
 
-<p>
-  <strong>Zipcode:</strong>
-  <%= @farm.zipcode %>
-</p>
 
-<p>
-  <strong>City:</strong>
-  <%= @farm.city %>
-</p>
 
-<p>
-  <strong>Hours:</strong>
-  <%= @farm.hours %>
-</p>
 
-<p>
-  <strong>Payment:</strong>
-  <%= @farm.payment %>
-</p>
+
+
+
 
 <p>
   <strong>Phone:</strong>
