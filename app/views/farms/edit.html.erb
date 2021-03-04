@@ -1,6 +1,9 @@
-<h1>Editing Farm</h1>
+<section class="container">
+    <h1>Editing Farm</h1>
+    
+    <%= render 'form', farm: @farm %>
+    
+    <%= link_to 'Show', @farm %> |
+    <%= link_to 'Back', farms_path %>
 
-<%= render 'form', farm: @farm %>
-
-<%= link_to 'Show', @farm %> |
-<%= link_to 'Back', farms_path %>
+</section>  

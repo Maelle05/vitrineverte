@@ -3,19 +3,36 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :address %>
-    <%= f.input :zipcode %>
-    <%= f.input :city %>
-    <%= f.input :hours %>
-    <%= f.input :payment %>
-    <%= f.input :phone %>
-    <%= f.input :email %>
-    <%= f.input :description %>
+  <div class="pb-5">
+    <h2>Informations générales :</h2>
+  
+    <div class="row">
+      <div class="col-md-6 inputs-group">
+        <%= f.input :name, label: "Nom" %>
+        <%= f.input :description, label: "Description de la ferme" %>
+        <%= f.input :phone, label: "Numéro de téléphone" %>
+        <%= f.input :email, label: "Adresse e-mail de contact" %>
+      </div>
+      <div class="col-md-6 form-inputs">
+        <%= f.input :address, label: "Adresse" %>
+        <%= f.input :zipcode, slabel: "Code postal" %>
+        <%= f.input :city, label: "Ville" %>
+      </div>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="pb-5">
+    <h2>Informations pratiques :</h2>
+  
+    <div class="row">
+      <div class="col-md-6 form-inputs">
+        <%= f.input :hours, label: "Heures de disponibilité" %>
+      </div>
+        <div class="col-md-6 form-inputs"><%= f.input :payment, label: "Moyens de paiements acceptés" %></div>
+    </div>
   </div>
+  
+    <div class="form-actions">
+      <%= f.button :submit, value: "Valider les informations" %>
+    </div>
 <% end %>
