@@ -32,9 +32,9 @@
               <td><%= order.id %></td>
               <td><% if order.ready %> Oui <% else %> Non <% end %></td>
               <td><% if order.taken %> Oui <% else %> Non <% end %></td>
-              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order) %></td>
+              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order), class: 'btn btn-light'  %></td>
               <% if current_user == @farm.user %>
-                <td><%= link_to 'Modifier le status', edit_farm_order_path(@farm, order) %></td>
+                <td><%= link_to 'La commande est prête ?', edit_farm_order_path(@farm, order), class: 'btn btn-primary'  %></td>
               <% end %>
             </tr>
           <% end %>
@@ -69,9 +69,9 @@
               <td><%= order.id %></td>
               <td><% if order.ready %> Oui <% else %> Non <% end %></td>
               <td><% if order.taken %> Oui <% else %> Non <% end %></td>
-              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order) %></td>
+              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order), class: 'btn btn-light' %></td>
               <% if current_user == @farm.user %>
-                <td><%= link_to 'Modifier le status', edit_farm_order_path(@farm, order) %></td>
+                <td><%= link_to 'Marquer la commande comme retité', edit_farm_order_path(@farm, order), class: 'btn btn-primary'  %></td>
               <% end %>
             </tr>
           <% end %>
@@ -106,9 +106,9 @@
               <td><%= order.id %></td>
               <td><% if order.ready %> Oui <% else %> Non <% end %></td>
               <td><% if order.taken %> Oui <% else %> Non <% end %></td>
-              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order) %></td>
+              <td><%= link_to 'Voir la commande', farm_order_path(@farm, order), class: 'btn btn-light' %></td>
               <% if current_user == @farm.user %>
-                <td><%= link_to 'Modifier le status', edit_farm_order_path(@farm, order) %></td>
+                <td><%= link_to "La commande n'a pas été retiré ?", edit_farm_order_path(@farm, order), class: 'btn btn-primary' %></td>
               <% end %>
             </tr>
           <% end %>
