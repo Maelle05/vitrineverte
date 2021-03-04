@@ -1,6 +1,4 @@
-  <%= @farm %>
-
-<h1>Products</h1>
+<h1 class="m-5 text-center">Votre commande pour "<%= @farm %>"</h1>
 
 
 <%= simple_form_for [@farm, @order] do |f| %>
@@ -8,10 +6,10 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Nom</th>
+        <th>Produits</th>
         <th>Description</th>
         <th>Prix</th>
-        <th>Quantité disponible</th>
+        <th>Disponibilité du produit </th>
         <% if current_user != @farm.user %>
           <th>Quantité commandée</th>
         <% end %>
@@ -32,7 +30,7 @@
               <%= product.product_unit %>
             </td>
             <td>
-              <% if product.active %> <p class='quantity'> <%= product.quantity %> </p> <% else %> Ce produit n'est pas disponibe actuellement <% end %>
+              <% if product.active %> <p class='quantity'> <%#= product.quantity %> </p> <% else %> Ce produit n'est pas disponibe actuellement <% end %>
             </td>
             <% if current_user != @farm.user  %>
               <td>
@@ -40,7 +38,7 @@
                 <% if !product.active %>
                   <input type="number" readonly="readonly" name="order[product_in_orders][]" class="form-control" min="0" max="0" value="0">
                 <%else %>
-                 <input type="number" name="order[product_in_orders][]" class="form-control inputProduct" min="0"  max="<%=product.quantity%>" value="<%= @order.item_for(product).quantity %>" >
+                 <input type="number" name="order[product_in_orders][]" class="form-control inputProduct" min="0"  max="<%#=product.quantity%>" value="<%= @order.item_for(product).quantity %>" >
                 <% end %>
               </td>
             <% end %>
