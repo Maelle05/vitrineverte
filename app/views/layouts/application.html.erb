@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vitrineverte</title>
+    <title><%= yield :title %> | Vitrine Verte</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= javascript_pack_tag 'application' %>
   </head>
-
   <body>
-    <%= render 'shared/navbar' %>
-    <main class="container-fluid m-0 p-0">
-        <%# <ol class="breadcrumb"> %>
-          <%# <%= render_breadcrumbs :tag => :li, :separator => ">" %>
-        <%# </ol> %>
-      </nav>
+    <%= render 'navbar' %>
+    <%= render 'breadcrumb' %>
+    <main>
       <%= yield %>
     </main>
-    <%# <%= render "shared/footer" %>
+    <%= render "footer" %>
   </body>
 </html>

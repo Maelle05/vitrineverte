@@ -10,11 +10,10 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
-
 gem 'devise'
 gem 'simple_form'
-gem "breadcrumbs_on_rails"
-
+gem 'breadcrumbs_on_rails'
+gem 'bootstrap'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do

@@ -1,71 +1,77 @@
-<div class="homegrid">
-    <%#<%= link_to pages_dashboardProductor_path do %>
-        <%#<div class="productor">Je suis producteur</div>
-    <% end %>
-    <%#<%= link_to farms_path do %>
-        <%#<div class="consumer">Je suis consommateur</div>
-    <% end %>
-    
-    <div class="homeheader">
-        <%= image_tag ("logo.svg"), class: "logo"%>
-        <h1 class="text-white mt-5">VITRINE VERTE</h1>
-        <h3 class="text-white">Favorisons les circuits courts</h3>
-    </div>
-</div>
-<section class="container mt-5">
-    <p class="text-center m-5 fs-4"> Vitrine verte le click and collect des producteur <br> Un concept simple qui aide votre producteur dans sa prise de commande. </p>
-    <div class="row align-items-start ">
-        <div class="col text-center ">
-            <%= image_tag "img1-home", class: "rounded-circle header-circle p-5  " %>
-            <p class="p-3 text-center fs-5" >Choisissez les plus beaux légumes</p>
-        </div>
-        <div class="col text-center ">
-            <%= image_tag "img2-home", class: "rounded-circle header-circle p-5" %>
-            <p class="p-3 text-center fs-5" >Réservez votre panier</p>
-        </div>
-        <div class="col text-center">
-            <%= image_tag "img3-home", class: "rounded-circle header-circle p-5" %>
-            <p class="p-3 text-center fs-5">Retirez et payez votre panier chez votre producteur</p>
-        </div>
-    </div>
-    <h3 class="text-center m-5" >Les producteurs</h3>
-    <%= render 'shared/farmList' %>
-    <%= link_to 'Liste des fermes', farms_path %>
-</section>
+<%= content_for :title, 'Favorisons les circuits courts' %>
 
-<div class="my-5 home-us-container ">
-    <div class=" row">
-        <div class="col home-us-p">
-            <div class="ps-5">
-                <h3 class="text-white fw-bold">Qui sommes-nous ? </h3>
-                <p class="text-white">À l’origine de l’initiative Vitrine Verte : des étudiants spécialisés en Métiers du Multimédia et de l’Internet à Bordeaux.
-                Nous avons pour motivation de faire changer les choses et d’apporter notre aide aux producteurs.
-                Pour cela, notre objectif est simple : développer le commerce local en facilitant la prise de commande autant du côté consommateur que du côté producteur.
-                </p>
-            </div>
-        </div>
-        <div class="col">
-            <%= image_tag ("home-us.png"), class: ""%>
-        </div>
-    </div>
+<div class="homeheader text-white text-center p-3">
+    <%= image_tag ("logo.svg"), width: 150 %>
+    <h1 class="mt-5">VITRINE VERTE</h1>
+    <h2 class="h3">Favorisons les circuits courts</h2>
 </div>
 
 <section class="container mt-5">
-    <h3 class="fw-bold text-center mb-5">Notre concept en détails</h3>
-    <div class="row align-items-start ">
-        <div class="col text-center ">
-            <%= image_tag "img4-home", class: " p-5  " %>
-            <p class="p-3 text-center fs-5" >Réservez votre panier sur Vitrine Verte et récupérez-le directement chez votre producteur.</p>
+    <p class="text-center m-5 fs-4">
+      Vitrine verte le click and collect des producteur <br>
+      Un concept simple qui aide votre producteur dans sa prise de commande.
+    </p>
+    <div class="row text-center">
+        <div class="col-md-4">
+          <%= image_tag "img1-home", class: "img-fluid rounded-circle bg-primary p-5" %>
+          <p class="p-3 fs-5" >Choisissez les plus beaux légumes</p>
         </div>
-        <div class="col text-center ">
-            <%= image_tag "img5-home", class: " p-5" %>
-            <p class="p-3 text-center fs-5" >Un site simple pour gérer les commandes.</p>
+        <div class="col-md-4">
+          <%= image_tag "img2-home", class: "img-fluid rounded-circle bg-primary p-5" %>
+          <p class="p-3 fs-5" >Réservez votre panier</p>
         </div>
-        <div class="col text-center">
-            <%= image_tag "img6-home", class: " p-5" %>
-            <p class="p-3 text-center fs-5">Valorisation du commerce local en aidant les producteurs.</p>
+        <div class="col-md-4">
+          <%= image_tag "img3-home", class: "img-fluid rounded-circle bg-primary p-5" %>
+          <p class="p-3 fs-5">Retirez et payez votre panier chez votre producteur</p>
+        </div>
+    </div>
+    <h3 class="text-center m-5">Les producteurs</h3>
+    <%= render 'farms/list' %>
+</section>
+
+<div class="bg-primary mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 d-flex align-items-center text-white">
+        <div>
+          <h3>Qui sommes-nous ?</h3>
+          <p>
+            À l’origine de l’initiative Vitrine Verte :
+            des étudiants spécialisés en Métiers du Multimédia et de l’Internet à Bordeaux.
+            Nous avons pour motivation de faire changer les choses et d’apporter notre aide aux producteurs.
+            Pour cela, notre objectif est simple : développer le commerce local en facilitant la prise de commande autant du côté consommateur que du côté producteur.
+          </p>
+        </div>
+      </div>
+      <div class="offset-md-1 col-md-6">
+        <%= image_tag ("home-us.png"), class: "img-fluid" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="container text-center mt-5">
+    <h3 class="fw-bold mb-5">Notre concept en détails</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <%= image_tag "img4-home", class: "p-5 img-fluid" %>
+            <p class="p-3 text-center fs-5">
+              Réservez votre panier sur Vitrine Verte et récupérez-le directement chez votre producteur.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <%= image_tag "img5-home", class: "p-5 img-fluid" %>
+            <p class="p-3 text-center fs-5">
+              Un site simple pour gérer les commandes.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <%= image_tag "img6-home", class:"p-5 img-fluid" %>
+            <p class="p-3 text-center fs-5">
+              Valorisation du commerce local en aidant les producteurs.
+            </p>
         </div>
     </div>
 </section>
 
-<%= render 'shared/ctaProducteur' %>
+<%= render 'ctaProducteur' %>

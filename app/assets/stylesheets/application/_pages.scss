@@ -1,49 +1,5 @@
-
-* {
-  box-sizing: border-box;
-}
-
-p{
-  font-size: 20px;
-}
-
-h2{
-  font-size: 30px;
-}
-
-footer {
-  background-color: rgba(214, 214, 214, 0.667);
-  width: 100%;
-}
-
-.logo-nav{
-  width: 50px;
-}
-
-.navbar-brand{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav {
-  background-color: #0E1F10;
-}
-
-.farm-title{
-  margin: 90px 0 90px 0;
-}
-
-.homegrid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-gap: 33px;
-}
-
 .homeheader {
   height: 500px;
-  grid-column: 1 / 13;
-  overflow: hidden;
   background-image: url('home-header.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -54,60 +10,6 @@ nav {
   align-items: center;
 }
 
-.homeheader .logo {
-  width: 150px;
-}
-
-.header-circle{
-  background-color: #D3A500;
-}
-
 .farm-card{
   background-color: #F3EDDE !important;
-}
-
-.button-farm-card{
-  background-color: #D3A500 !important;
-}
-
-.button-farm-card:focus{
-  box-shadow: none !important;
-}
-
-.container-loc-farm-card{
-  display: flex;
-  flex-direction: row;
-}
-
-.home-us-container{
-  background-color: #D3A500;
-}
-
-.home-us-p{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-us-p div{
-  width: 60% !important;
-}
-
-.home-prod-container{
-  background-color: #87A80D;
-}
-
-.button-home-prod{
-  background-color: #F1E7D6 !important;
-  color: #0E1F10 !important;
-}
-
-.button-home-prod:focus{
-  box-shadow: none !important;
-}
-
-@media all and (max-width: 1024px)
-{
-
 }
