@@ -16,10 +16,14 @@ class FarmsController < ApplicationController
   # GET /farms/1
   # GET /farms/1.json
   def show
+<<<<<<< HEAD
     client = OpenStreetMap::Client.new
     add_breadcrumb @farm, :farm_path
+=======
+>>>>>>> 6a364e088516db0b2f82cdca8900a2894eed86ec
     @products = @farm.products
     @order = Order.where(user: current_user, farm: @farm, ready: [nil, false]).first_or_initialize
+    add_breadcrumb @farm, :farm_path
 
   end
 
