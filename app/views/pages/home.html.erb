@@ -26,9 +26,13 @@
           <p class="p-3 fs-5">Retirez et payez votre panier chez votre producteur</p>
         </div>
     </div>
-    <h3 class="text-center m-5"><%= link_to "Les producteurs", farms_path %></h3>
-    <%# <h3 class="text-center m-5">Les producteurs</h3> %>
+    <h3 class="text-center m-5">Les producteurs</h3>
     <%= render 'farms/list' %>
+    <h4 class="text-center link-primary p-5">
+      <%= link_to farms_path do %>
+        Voir la liste de tous les producteurs qui nous font confiance <%= image_tag "arrow.svg", style: "width: 20px"%>
+      <% end %>
+    </h4>
 </section>
 
 <div class="bg-primary mt-5">
