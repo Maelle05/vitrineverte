@@ -2,6 +2,56 @@
 <div class="m-5">
   <div class="container">
     <h1 class="text-center fw-bold m-5">Découvrez les producteurs près de chez vous</h1>
+    <script>
+      let tabLoc = []
+    </script>
+    <% @farms.each do |farm| %>
+        <script>
+          fetch("https://api-adresse.data.gouv.fr/search/?q=<%=farm.address %>&postcode=<%= farm.zipcode %>").then((response) => response.json()).then(function(json) {
+          let x = json.features[0].geometry.coordinates[1]
+          let y = json.features[0].geometry.coordinates[0]
+
+          tabLoc.push([x, y])
+
+                  })
+        </script>
+    <% end %>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+      <div id="mapid" class="my-5"></div>
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+    <script>
+          var infopos = []
+
+          function maPosition(position) {
+            
+            infopos.push(parseFloat(position.coords.latitude)) 
+            infopos.push(parseFloat(position.coords.longitude)) 
+            console.log(infopos)
+          }
+
+          if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(maPosition);
+          }
+          console.log(tabLoc)
+          
+          var mymap = L.map('mapid').setView([50.6365654, 3.0635282], 5);
+          L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+                        // Il est toujours bien de laisser le lien vers la source des données
+                        attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+                        minZoom: 1,
+                        maxZoom: 20
+                    }).addTo(mymap);
+          
+          for (let i = 0; i < tabLoc.length; i++) {
+            L.marker([tabLoc[i][0], tabLoc[i][1]]).addTo(mymap)
+            
+          }
+
+    </script>
+    <style>
+      #mapid { height: 300px;  }
+    </style>
     <%= render "list" %>
     <div class="row">
     </div>

@@ -1,5 +1,5 @@
 class FarmsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_farm, only: [:show, :edit, :update, :destroy]
 
   add_breadcrumb "Accueil", :root_path
