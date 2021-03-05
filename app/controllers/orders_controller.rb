@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
   def index
     @farms = Farm.all
     @orders = Order.all
+    
     add_breadcrumb "#{@farm}", farm_path(@farm)
     add_breadcrumb "Mes commandes", farm_orders_path
   end

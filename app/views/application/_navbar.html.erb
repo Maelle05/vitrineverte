@@ -13,6 +13,9 @@
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <li class="nav-item">
+            <%= link_to 'Mes commandes', pages_my_orders_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
             <%= link_to 'Mon profil', edit_user_registration_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">

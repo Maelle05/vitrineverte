@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/contact'
   get 'pages/legalnotice'
-  get 'pages/homeConsumer'
-  get 'pages/homeProductor'
-  get 'pages/dashboardProductor'
+  get 'pages/my_orders'
 
   resources :farms do
     resources :products

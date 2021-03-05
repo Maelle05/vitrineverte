@@ -6,6 +6,14 @@ class PagesController < ApplicationController
     render layout: 'minimal'
   end
 
+  def my_orders
+    @farms = Farm.all
+    @orders = Order.all
+
+    add_breadcrumb "Accueil", root_path
+    add_breadcrumb "Mes commandes", pages_my_orders_path
+  end
+
   def legalnotice
   end
 end
