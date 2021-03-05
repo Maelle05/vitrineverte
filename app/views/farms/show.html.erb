@@ -12,26 +12,26 @@
   <div class='col-12'>
     <div class="d-flex justify-content-start align-items-center py-3">
     <%= image_tag ("clock.svg"), width: 20 %>
-    <h3 class="h5 px-4">Horaires</h3>
+    <h3 class="h5 pl-2">Horaires</h3>
     </div>
      <p><%= @farm.hours %></p>
      <div class="d-flex justify-content-start">
     <%= image_tag ("adresse.svg"), width: 20 %>
-    <h3 class="h5 px-4">Adresse</h3>
+    <h3 class="h5 pl-2">Adresse</h3>
     </div>
-      <p><%= @farm.address %></p>
-      <p><%= @farm.city %></p>
-      <p><%= @farm.zipcode %></p>
+      <p><%= @farm.address %><br>
+      <%= @farm.city %><br>
+      <%= @farm.zipcode %></p>
       <div class="d-flex justify-content-start">
         <%= image_tag ("phone.svg"), width: 20 %>
-        <h3 class="h5 px-4">Téléphone</h3>
+        <h3 class="h5 pl-2">Téléphone</h3>
       </div>
       <p>
         <%= @farm.phone %>
       </p>
       <div class="d-flex justify-content-start">
         <%= image_tag ("coins.svg"), width: 20 %>
-        <h3 class="h5 px-4">Accepte le paiement</h3>
+        <h3 class="h5 pl-2">Accepte le paiement</h3>
       </div>
       <p>
         <%= @farm.payment %>
@@ -46,7 +46,7 @@
     <script>
         
 
-        fetch("https://api-adresse.data.gouv.fr/search/?q=<%= @farm.address %>&postcode=<%= @farm.zipcode %>").then((response) => response.json()).then(function(json) {
+        fetch("https://api-adresse.data.gouv.fr/search/?q=<%= @farm.address %>").then((response) => response.json()).then(function(json) {
 
           console.log(json.features)
           let x = json.features[0].geometry.coordinates[1]
@@ -61,8 +61,6 @@
                         maxZoom: 20
                     }).addTo(mymap);
           L.marker([x, y]).addTo(mymap)
-                          .bindPopup('<%= @farm %>')
-                          .openPopup();
         
         })
     </script>
@@ -153,7 +151,7 @@
 
 
 <% if current_user == @farm.user %>
-  <%= link_to 'Nouveau produit', new_farm_product_path(@farm), class: 'btn btn-primary' %>
+  <div class="pb-5"><%= link_to 'Nouveau produit', new_farm_product_path(@farm), class: 'btn btn-primary' %></div>
 <% end %>
 
 

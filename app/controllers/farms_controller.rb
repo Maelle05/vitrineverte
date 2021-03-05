@@ -19,7 +19,6 @@ class FarmsController < ApplicationController
     @products = @farm.products
     @order = Order.where(user: current_user, farm: @farm, ready: [nil, false]).first_or_initialize
     add_breadcrumb @farm, :farm_path
-
   end
 
   # GET /farms/new
