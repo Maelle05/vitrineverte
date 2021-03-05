@@ -46,7 +46,7 @@
     <script>
         
 
-        fetch("https://api-adresse.data.gouv.fr/search/?q=<%= @farm.address %>").then((response) => response.json()).then(function(json) {
+        fetch("https://api-adresse.data.gouv.fr/search/?q=<%= @farm.address %>&postcode=<%= @farm.zipcode %>").then((response) => response.json()).then(function(json) {
 
           console.log(json.features)
           let x = json.features[0].geometry.coordinates[1]
