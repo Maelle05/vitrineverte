@@ -61,6 +61,8 @@
                         maxZoom: 20
                     }).addTo(mymap);
           L.marker([x, y]).addTo(mymap)
+                          .bindPopup('<%= @farm %>')
+                          .openPopup();
         
         })
     </script>
