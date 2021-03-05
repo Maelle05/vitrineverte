@@ -13,7 +13,7 @@
 </p>
 
 <p class="">
-  <strong> La commande a t'elle été prepaté :</strong>
+  <strong> La commande a-t-elle été preparé ?</strong>
   <%if  @order.ready %>
     <p> Oui </p>
   <% else %>
@@ -22,7 +22,7 @@
 </p>
 
 <p>
-  <strong> La commande a t'elle été retiré :</strong>
+  <strong> La commande a-t-elle été retiré ?</strong>
   <%if  @order.taken %>
     <p> Oui </p>
   <% else %>
@@ -59,9 +59,9 @@
     <%= link_to 'Suprimer la commande', farm_order_path(@farm, @order), method: :delete, class: 'btn btn-danger m-3' %>
   <% else %>
     <% if @order.taken != true %>
-      <p>La commande a déja été prepaté par le producteur, vous ne pouvez plus la modifier</p>
+      <p>La commande a déja été preparé par le producteur, vous ne pouvez plus la modifier</p>
     <% else %>
-      <p>Vous avez déja retiré votre commande </p>
+      <p>Vous avez déjà retiré votre commande </p>
     <% end %>
   <% end %>
 <% end %>
